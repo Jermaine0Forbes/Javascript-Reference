@@ -5,6 +5,12 @@
 
 ## Get Elements 
 
+- [document.querySelector]
+- [document.querySelectorAll]
+- [document.getElementsById]
+- [document.getElementsByClassName]
+- [document.getElementsByTagName]
+
 
 ## Events
 
