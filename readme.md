@@ -5,6 +5,8 @@ All the information you need to know about this amazing language
 ## General
 
 - [how to install jquery into typescript][jquery-type]
+- [how to declare a variable type][data-type]
+- [how to declare a return type of a function][function-type]
 
 ## Gulp
 
@@ -17,11 +19,37 @@ All the information you need to know about this amazing language
 ## Errors
 -  [TS2451: Cannot redeclare block-scoped variable ][redeclare-variable]
 
+[function-type]:#how-to-declare-a-return-type-of-a-function
+[data-type]:#how-to-declare-a-variable-type
 [jquery-type]:#how-to-install-jquery-into-typescript
 [redeclare-variable]:#cannot-redeclare-block-scoped-variable
 [home]:#typescript-guide
 [type-mix]:#how-to-use-typescript-in-laravel-mix
 
+
+### How to declare a return type of a function
+
+```js
+
+function greeting(message:string):string{
+    return `Hello ${message}`
+}
+```
+
+[go back home][home]
+
+### How to declare a variable type
+
+
+```js
+let  humble:boolean = false;
+
+let  name : string = "jermaine";
+
+let age : number = 27;
+```
+
+[go back home][home]
 
 ### How to install jquery into typescript
 
