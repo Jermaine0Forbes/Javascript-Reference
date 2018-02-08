@@ -5,6 +5,8 @@ All the information you need to know about this amazing language
 ## General
 
 - [how to install jquery into typescript][jquery-type]
+- [how to declare a variable type][data-type]
+- [how to declare a return type of a function][function-type]
 
 ## Gulp
 
@@ -18,6 +20,8 @@ All the information you need to know about this amazing language
 -  [TS2451: Cannot redeclare block-scoped variable ][redeclare-variable]
 - [“property does not exist on type JQuery” ]
 
+[function-type]:#how-to-declare-a-return-type-of-a-function
+[data-type]:#how-to-declare-a-variable-type
 [jquery-type]:#how-to-install-jquery-into-typescript
 [redeclare-variable]:#cannot-redeclare-block-scoped-variable
 [home]:#typescript-guide
@@ -27,6 +31,30 @@ All the information you need to know about this amazing language
 
 **reference**
 - [How can I stop “property does not exist on type JQuery” syntax errors when using Typescript?](https://stackoverflow.com/questions/24984014/how-can-i-stop-property-does-not-exist-on-type-jquery-syntax-errors-when-using)
+
+[go back home][home]
+
+### How to declare a return type of a function
+
+```js
+
+function greeting(message:string):string{
+    return `Hello ${message}`
+}
+```
+
+[go back home][home]
+
+### How to declare a variable type
+
+
+```js
+let  humble:boolean = false;
+
+let  name : string = "jermaine";
+
+let age : number = 27;
+```
 
 [go back home][home]
 
