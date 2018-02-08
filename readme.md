@@ -8,7 +8,7 @@ All the information you need to know about this amazing language
 
 ## Gulp
 
-- [how to use typescript with gulp]
+
 
 ## Laravel
 
