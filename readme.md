@@ -19,8 +19,9 @@ All the information you need to know about this amazing language
 
 ## Errors
 -  [TS2451: Cannot redeclare block-scoped variable ][redeclare-variable]
-- [“property does not exist on type JQuery” ]
+- [“property does not exist on type JQuery” ][jquery-error]
 
+[jquery-error]:#propery-does-not-exist-on-type-jquery
 [gulp-type]:#how-to-create-a-simple-gulp-file-for-typescript
 [function-type]:#how-to-declare-a-return-type-of-a-function
 [data-type]:#how-to-declare-a-variable-type
