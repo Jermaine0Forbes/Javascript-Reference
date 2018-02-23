@@ -17,10 +17,15 @@ All the information you need to know about this amazing language
 
 - [how to use typescript in laravel mix][type-mix]
 
+## TSConfig
+
+- [tsconfig options table][config-table]
+
 ## Errors
 -  [TS2451: Cannot redeclare block-scoped variable ][redeclare-variable]
 - [“property does not exist on type JQuery” ][jquery-error]
 
+[config-table]:#tsconfig-options-table
 [jquery-error]:#propery-does-not-exist-on-type-jquery
 [gulp-type]:#how-to-create-a-simple-gulp-file-for-typescript
 [function-type]:#how-to-declare-a-return-type-of-a-function
@@ -30,6 +35,25 @@ All the information you need to know about this amazing language
 [home]:#typescript-guide
 [type-mix]:#how-to-use-typescript-in-laravel-mix
 
+
+### tsconfig options table 
+
+#### Compile Options Table 
+
+name|type|description
+-|-|-
+outFile|string|Concatenate and emit output to single file.
+pretty|boolean|Stylize errors and messages using color and context (experimental).
+lib|array|Specify library file to be included in the compilation. Requires TypeScript version 2.0 or later.
+target|string|Specify ECMAScript target version. Permitted values are 'es3', 'es5', 'es6', 'es2015', 'es2016', 'es2017', 'es2018' or 'esnext'.
+module|string|Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext'.
+
+##### More Detail 
+
+**lib:** `"es5", "es6", "es2015", "es7", "es2016", "es2017", "es2018", "esnext", "dom", "dom.iterable", "webworker", "scripthost", "es2015.core", "es2015.collection", "es2015.generator", "es2015.iterable",
+                        "es2015.promise", "es2015.proxy", "es2015.reflect", "es2015.symbol", "es2015.symbol.wellknown", "es2016.array.include", "es2017.object", "es2017.sharedmemory", "es2017.string", "es2017.typedarrays", "esnext.array", "esnext.asynciterable", "esnext.promise"`
+
+[go back home][home]
 
 ### how to create a simple gulp file for typescript
 
