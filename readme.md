@@ -12,6 +12,7 @@ All the information you need to know about this amazing language
 
 - [how to create a simple gulp file for typescript][gulp-type]
 - [how to concatenate ts files with tsconfig][concat-tsconfig]
+- [how to concatenate with gulp-concat][gulp-concat]
 
 
 ## Laravel
@@ -26,6 +27,7 @@ All the information you need to know about this amazing language
 -  [TS2451: Cannot redeclare block-scoped variable ][redeclare-variable]
 - [“property does not exist on type JQuery” ][jquery-error]
 
+[gulp-concat]:#how-to-concatenate-with-gulp-concat
 [concat-tsconfig]:#how-to-concatente-ts-files-with-tsconfig
 [config-table]:#tsconfig-options-table
 [jquery-error]:#propery-does-not-exist-on-type-jquery
@@ -37,6 +39,79 @@ All the information you need to know about this amazing language
 [home]:#typescript-guide
 [type-mix]:#how-to-use-typescript-in-laravel-mix
 
+
+---
+
+### how to concatenate with gulp-concat
+
+1. install gulp-concat
+
+```
+npm i --save-dev gulp-concat
+```
+
+2. make sure in your **tsconfig** file it does not have `outFile`, so have your tsconfig look like this 
+
+```
+{
+    
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5", 
+        "pretty":true,
+        "watch":true,
+        "module":"system"
+    },
+    "exclude":["node_modules"],
+    "include":["typescript/*.ts"]
+}
+
+```
+
+3. now in your gulpfile.js add all this crap
+
+```js
+\var gulp = require("gulp");
+var ts = require("gulp-typescript");
+var tsProject = ts.createProject("tsconfig.json");
+var tslint = require("gulp-tslint");
+var concat = require("gulp-concat");
+
+gulp.task("default", ["type"]);
+
+
+gulp.task("lint:ts", function() {
+    return gulp.src("typescript/*.ts")
+        .pipe(tslint({
+            formatter: "stylish"
+        }))
+        .pipe(tslint.report({allowWarnings:true}))
+});
+
+gulp.task("type",["lint:ts", "concat"], function(){
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest("js"));
+});
+
+gulp.task("concat", function(){
+
+	// change the location to where you want concatenate the ts files
+    return gulp.src("typescript/bundle/*.ts")
+        .pipe(concat("all.ts"))
+        .pipe(gulp.dest("typescript"));
+})
+
+
+gulp.task("watch", function(){
+    gulp.watch("typescript/*.ts",["type"]);
+});
+
+```
+
+4. And that is it
+
+[go back :house:][home]
 
 ### how to concatenate ts files with tsconfig 
 
