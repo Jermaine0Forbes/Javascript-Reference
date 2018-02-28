@@ -11,6 +11,7 @@ All the information you need to know about this amazing language
 ## Gulp
 
 - [how to create a simple gulp file for typescript][gulp-type]
+- [how to concatenate ts files with tsconfig][concat-tsconfig]
 
 
 ## Laravel
@@ -25,6 +26,7 @@ All the information you need to know about this amazing language
 -  [TS2451: Cannot redeclare block-scoped variable ][redeclare-variable]
 - [“property does not exist on type JQuery” ][jquery-error]
 
+[concat-tsconfig]:#how-to-concatente-ts-files-with-tsconfig
 [config-table]:#tsconfig-options-table
 [jquery-error]:#propery-does-not-exist-on-type-jquery
 [gulp-type]:#how-to-create-a-simple-gulp-file-for-typescript
@@ -36,7 +38,92 @@ All the information you need to know about this amazing language
 [type-mix]:#how-to-use-typescript-in-laravel-mix
 
 
+### how to concatenate ts files with tsconfig 
+
+1. well first off, if you have not install the dependencies to gulp and 
+typescript you should be doing it now.
+
+```
+npm i -g gulp-cli
+
+npm i --save-dev typescript gulp gulp-typescript
+```
+2. and, if you have not created your tsconfig file, you should be doing it right now 
+
+```
+nano tsconfig.json 
+
+//inside json add this
+
+{
+    
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5", 
+        "pretty":true,
+        "watch":true,
+        "module":"system"
+    },
+    "exclude":["node_modules"],
+    "include":["typescript/*.ts"]
+}
+
+```
+
+3. in the gulp file add this 
+
+```js
+var gulp = require("gulp");
+var ts = require("gulp-typescript");
+var tsProject = ts.createProject("tsconfig.json");
+
+gulp.task("default", ["watch"]);
+
+
+
+gulp.task("type", function(){
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest("js"));
+});
+
+
+
+gulp.task("watch", function(){
+    gulp.watch("typescript/*.ts",["type"]);
+});
+
+```
+
+4. now in the tsconfig file add the properties `module` and `outFile`  and specify the name of the new js file 
+that all the ts files are going to concatenate into 
+
+```
+{
+    
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5", 
+        "pretty":true,
+        "watch":true,
+        "module":"system",
+		"outFile": "main.js"
+    },
+    "exclude":["node_modules"],
+    "include":["typescript/*.ts"]
+}
+``` 
+
+5. that is pretty much it, i think ?
+
+
+[go back :house:][home]
+
+
 ### tsconfig options table 
+
+**reference** 
+- [tsconfig json](http://json.schemastore.org/tsconfig)
 
 #### Compile Options Table 
 
