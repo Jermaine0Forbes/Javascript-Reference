@@ -5,7 +5,7 @@
 
 ## Get Elements 
 
-- [document.querySelector]
+- [document.querySelector][query-select]
 - [document.querySelectorAll]
 - [document.getElementsById]
 - [document.getElementsByClassName]
@@ -28,9 +28,61 @@
 
 ## New Stuff
 
+[query-select]:#documentqueryselector
 [string-search]:#how-to-search-through-a-string
 [window-location]:#how-to-get-the-current-url
 [home]:#javascript-reference
+
+<details>
+<summary>
+View Content
+</summary>
+</details>
+
+<details>
+<summary>
+View Content
+</summary>
+</details>
+
+[go back :house:][home]
+
+
+### document.querySelector
+
+**reference**
+- [mdn](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+
+<details>
+<summary>
+View Content
+</summary>
+
+This grabs the first selector that is being mentioned
+
+```html
+<div>
+	<p class="p">
+	 this is first paragraph
+	 </p>
+	 
+	 <p class="p">
+	 this is second paragraph
+	 </p>
+<div>
+
+```
+
+```js
+var p = document.querySelector(".p");
+
+p.style.color = "blue"; // this should grab the selector with class of "p" and change the color of it.
+```
+
+</details>
+
+[go back :house:][home]
+ 
 
 ### How to search through a string
 
