@@ -1,6 +1,7 @@
 # Javascript Reference
 
-## Create Elements
+## General 
+- [how to create an element]
 
 
 ## Get Elements 
@@ -21,31 +22,24 @@
 
 
 ## Events
+- [how to hover]
 
 
 ## Ajax 
+- [how to create a simple ajax request]
 
 
 ## New Stuff
+
+- [async functions]
+
 
 [query-select]:#documentqueryselector
 [string-search]:#how-to-search-through-a-string
 [window-location]:#how-to-get-the-current-url
 [home]:#javascript-reference
 
-<details>
-<summary>
-View Content
-</summary>
-</details>
 
-<details>
-<summary>
-View Content
-</summary>
-</details>
-
-[go back :house:][home]
 
 
 ### document.querySelector
