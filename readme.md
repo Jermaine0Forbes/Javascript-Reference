@@ -7,7 +7,7 @@
 ## Get Elements 
 
 - [document.querySelector][query-select]
-- [document.querySelectorAll]
+- [document.querySelectorAll][query-selector-all]
 - [document.getElementsById]
 - [document.getElementsByClassName]
 - [document.getElementsByTagName]
@@ -33,12 +33,51 @@
 
 - [async functions]
 
-
+[query-selector-all]:#documentqueryselectorall
 [query-select]:#documentqueryselector
 [string-search]:#how-to-search-through-a-string
 [window-location]:#how-to-get-the-current-url
 [home]:#javascript-reference
 
+
+
+
+### document.querySelectorAll
+
+<details>
+<summary>
+View Content
+</summary>
+
+
+
+This grabs all the selectors
+
+**HTML**
+
+```html
+<div>
+	<p class="p">
+	 this is first paragraph
+	 </p>
+	 
+	 <p class="p">
+	 this is second paragraph
+	 </p>
+<div>
+
+```
+
+**JS**
+```js
+var p = document.querySelectorAll(".p");
+
+p.style.color = "blue"; // this should grab the selector with class of "p" and change the color of it.
+```
+
+</details>
+
+[go back :house:][home]
 
 
 
