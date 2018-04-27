@@ -4,6 +4,9 @@
 - [how to create an element]
 
 
+## Classes
+- [how fix the "this" keyword in methods][this-key]
+
 ## Get Elements 
 
 - [document.querySelector][query-select]
@@ -29,10 +32,11 @@
 - [how to create a simple ajax request]
 
 
-## New Stuff
+## Things I need to learn
 
 - [async functions]
 
+[this-key]:#make-the-this-keyword-work
 [query-selector-all]:#documentqueryselectorall
 [query-select]:#documentqueryselector
 [string-search]:#how-to-search-through-a-string
@@ -40,6 +44,34 @@
 [home]:#javascript-reference
 
 
+
+### make the this keyword work
+
+**reference**
+- [What is the proper way to create methods within a class?](https://www.reddit.com/r/javascript/comments/8f8ftu/what_is_the_proper_way_to_create_methods_within_a/)
+
+A lot of times when using the methods of a class. A method might return undefined because 
+there too many methods/functions inside other methods, or you might have a method inside an event listener
+that throws off the other functions. In the case of that you should always bind **this** into the method within the constructor
+
+<details>
+<summary>
+View Content
+</summary>
+
+```js
+constructor() {
+    //this should prevent any methods from giving you errrors
+	// even if they are inside an event listener
+	
+    this.makeSound = this.makeSound.bind(this);
+}
+```
+
+</details>
+
+[go back :house:][home]
+ 
 
 
 ### document.querySelectorAll
