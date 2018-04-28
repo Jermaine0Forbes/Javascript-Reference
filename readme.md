@@ -2,6 +2,7 @@
 
 ## General 
 - [how to create an element]
+- [convert DOM elements to array elements][dom-array]
 
 
 ## Classes
@@ -11,9 +12,9 @@
 
 - [document.querySelector][query-select]
 - [document.querySelectorAll][query-selector-all]
-- [document.getElementsById]
-- [document.getElementsByClassName]
-- [document.getElementsByTagName]
+- [document.getElementById][by-id]
+- [document.getElementsByClassName][by-class]
+- [document.getElementsByTagName][by-tag]
 
 ## String 
 
@@ -36,6 +37,10 @@
 
 - [async functions]
 
+[dom-array]:#convert-dom-elements-to-array-elements
+[by-tag]:#documentgetelementsbytagname
+[by-class]:#documentgetelementsbyclassname
+[by-id]:#documentgetelementbyid
 [this-key]:#make-the-this-keyword-work
 [query-selector-all]:#documentqueryselectorall
 [query-select]:#documentqueryselector
@@ -43,7 +48,126 @@
 [window-location]:#how-to-get-the-current-url
 [home]:#javascript-reference
 
+___
 
+
+### Convert DOM elements to array elements
+
+<details>
+<summary>
+View Content
+</summary>
+    
+**reference**
+- [Javascript splice for array of DOM elements
+](https://stackoverflow.com/questions/27637074/javascript-splice-for-array-of-dom-elements)
+
+If you want to use array methods on DOM elements you have to use this simple method
+
+```js
+var myArray = [].slice.call(document.querySelectorAll('.selected'));
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### document.getElementsByTagName
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**HTML**
+```html
+<p class="number">1</p>
+  <p class="number">2</p>
+  <p class="number">3</p>
+  <p class="number">4</p>
+```
+
+**JS**
+```js
+var ps  = document.getElementsByTagName("p");
+
+ var arr = [].slice.call(ps);
+
+ arr.forEach(function($){
+    
+   
+   $.innerHTML = "blue";
+ })
+```
+
+</details>
+
+[go back :house:][home]
+
+### document.getElementsByClassName
+
+<details>
+<summary>
+View Content
+</summary>
+
+**HTML**
+```html
+<p class="number">1</p>
+  <p class="number">2</p>
+  <p class="number">3</p>
+  <p class="number">4</p>
+```
+**JS**
+```js
+
+var ps  = document.getElementsByClassName("number");
+
+ var arr = [].slice.call(ps);
+
+ arr.forEach(function(val){
+    //console.log(val.innerHTML); 
+   
+   val.style.color = "red";// changes all the font colors to red
+ })
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### document.getElementById
+
+<details>
+<summary>
+View Content
+</summary>
+
+**HTML**
+```html
+
+<div id="target">
+  Text
+</div>
+
+```
+
+**JS**
+```js
+
+var t = document.getElementById("target");
+
+t.innerHTML = "this is new text";
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ### make the this keyword work
 
