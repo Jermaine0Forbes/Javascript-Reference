@@ -1,14 +1,14 @@
 # Javascript Reference
 
-## General 
-- [how to create an element]
+## General
+- [how to create an element][createElement]
 - [convert DOM elements to array elements][dom-array]
 
 
 ## Classes
 - [how fix the "this" keyword in methods][this-key]
 
-## Get Elements 
+## Get Elements
 
 - [document.querySelector][query-select]
 - [document.querySelectorAll][query-selector-all]
@@ -16,20 +16,20 @@
 - [document.getElementsByClassName][by-class]
 - [document.getElementsByTagName][by-tag]
 
-## String 
+## String
 
 - [how to search through a string][string-search]
 
-## Window 
+## Window
 
 - [How to get the current url][window-location]
 
 
 ## Events
-- [how to hover]
+- [how to hover][event-hover]
 
 
-## Ajax 
+## Ajax
 - [how to create a simple ajax request]
 
 
@@ -37,6 +37,8 @@
 
 - [async functions]
 
+[event-hover]:#how-to-hover
+[createElement]:#how-to-create-element
 [dom-array]:#convert-dom-elements-to-array-elements
 [by-tag]:#documentgetelementsbytagname
 [by-class]:#documentgetelementsbyclassname
@@ -51,13 +53,120 @@
 ___
 
 
+### how to hover
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [mdn](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseenter)
+
+
+**HTML**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+        #box{
+      height:100px;
+      background:blue;
+      width:100px;
+      }
+  </style>
+</head>
+<body>
+
+  <div id="box">
+
+  </div>
+
+</body>
+</html>
+```
+
+**JS**
+```js
+const box = document.getElementById("box");
+box.style.transition = "all 0.3s";
+
+box.onmouseenter = function(){
+  this.style.background = "red";
+}
+
+box.onmouseleave = function(){
+  this.style.background="purple";
+}
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### how to create an element
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [w3schools](https://www.w3schools.com/jsref/met_document_createelement.asp)
+
+#### 1st Way - best way
+
+```js
+<main>
+<div id="target">
+</div>
+</main>
+
+<script>
+const t = document.getElementById("target")
+t.innerHTML = "<p> this is random text </p>";// the best way to create elements
+</script>
+
+```
+
+
+#### 2nd Way
+
+```js
+<main>
+<div id="target">
+</div>
+</main>
+
+<script>
+const t = document.getElementById("target")
+const p = document.createElement("p");
+let text = document.createTextNode("this is random text")
+p.appendChild(text);
+
+t.appendChild(p)// will add the p tag, with the text inside the target div tag
+</script>
+```
+
+</details>
+
+[go back :house:][home]
+
+
 ### Convert DOM elements to array elements
 
 <details>
 <summary>
 View Content
 </summary>
-    
+
 **reference**
 - [Javascript splice for array of DOM elements
 ](https://stackoverflow.com/questions/27637074/javascript-splice-for-array-of-dom-elements)
@@ -96,8 +205,8 @@ var ps  = document.getElementsByTagName("p");
  var arr = [].slice.call(ps);
 
  arr.forEach(function($){
-    
-   
+
+
    $.innerHTML = "blue";
  })
 ```
@@ -128,8 +237,8 @@ var ps  = document.getElementsByClassName("number");
  var arr = [].slice.call(ps);
 
  arr.forEach(function(val){
-    //console.log(val.innerHTML); 
-   
+    //console.log(val.innerHTML);
+
    val.style.color = "red";// changes all the font colors to red
  })
 
@@ -174,7 +283,7 @@ t.innerHTML = "this is new text";
 **reference**
 - [What is the proper way to create methods within a class?](https://www.reddit.com/r/javascript/comments/8f8ftu/what_is_the_proper_way_to_create_methods_within_a/)
 
-A lot of times when using the methods of a class. A method might return undefined because 
+A lot of times when using the methods of a class. A method might return undefined because
 there too many methods/functions inside other methods, or you might have a method inside an event listener
 that throws off the other functions. In the case of that you should always bind **this** into the method within the constructor
 
@@ -187,7 +296,7 @@ View Content
 constructor() {
     //this should prevent any methods from giving you errrors
 	// even if they are inside an event listener
-	
+
     this.makeSound = this.makeSound.bind(this);
 }
 ```
@@ -195,7 +304,7 @@ constructor() {
 </details>
 
 [go back :house:][home]
- 
+
 
 
 ### document.querySelectorAll
@@ -216,7 +325,7 @@ This grabs all the selectors
 	<p class="p">
 	 this is first paragraph
 	 </p>
-	 
+
 	 <p class="p">
 	 this is second paragraph
 	 </p>
@@ -254,7 +363,7 @@ This grabs the first selector that is being mentioned
 	<p class="p">
 	 this is first paragraph
 	 </p>
-	 
+
 	 <p class="p">
 	 this is second paragraph
 	 </p>
@@ -271,7 +380,7 @@ p.style.color = "blue"; // this should grab the selector with class of "p" and c
 </details>
 
 [go back :house:][home]
- 
+
 
 ### How to search through a string
 

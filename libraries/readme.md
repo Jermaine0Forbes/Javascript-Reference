@@ -19,6 +19,7 @@ adds code highlighting syntax for language text
 
 Ace is an embeddable code editor written in JavaScript. It matches the features and performance of native editors such as Sublime, Vim and TextMate.
 
+- [Home](https://ace.c9.io/#nav=embedding&api=editor)
 - [Look at themes](https://ace.c9.io/tool/mode_creator.html)
 - [Look at options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace)
 - [Get text from code editor](https://stackoverflow.com/questions/8963855/how-do-i-get-value-from-ace-editor)
