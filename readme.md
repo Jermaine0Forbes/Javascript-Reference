@@ -30,13 +30,14 @@
 
 
 ## Ajax
-- [how to create a simple ajax request]
+- [how to create a simple ajax request][fetch-get]
 
 
 ## Things I need to learn
 
 - [async functions]
 
+[fetch-get]:#how-to-create-a-simple-ajax-request
 [event-hover]:#how-to-hover
 [createElement]:#how-to-create-element
 [dom-array]:#convert-dom-elements-to-array-elements
@@ -51,6 +52,107 @@
 [home]:#javascript-reference
 
 ___
+
+
+### how to create a simple ajax request
+
+**reference**
+- [mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+<details>
+<summary>
+View Content
+</summary>
+
+```html
+<main>
+    <section class="container">
+      <h2>Practice </h2>
+      <div class="row">
+        <button class="btn btn-primary" type="button" name="button">load data</button>
+      </div>
+      <p id="result"></p>
+
+    </section>
+</main>
+
+<script type="text/javascript">
+ (function(){
+
+   const btn = document.querySelector("button");
+
+   btn.onclick = function(){
+
+     //This fetches any data from get-ajax.php
+     fetch("views/get-ajax.php")
+     // turns json data into objects
+     .then((response) => response.json())
+     .then((response) => {
+       const p = document.getElementById("result")
+       let text = "";
+       console.log(response)
+       // Loops through the array objects and adds the data into paragraph tag
+       //which then adds it into the text variable
+       response.forEach(function(e){
+         text +=`
+         <p><strong>${e.id}</strong> ${e.animal} - ${e.sex} </p>
+         `;
+
+       })
+
+       //the p tag
+       p.innerHTML =text;
+
+
+     })
+   }
+
+ })()
+</script>
+
+```
+**In get-ajax.php**
+```php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+
+$sql = new mysqli("localhost","username","password","Testing");
+
+if($sql->connect_error){
+  die($sql->connect_error);
+}
+
+$query = "SELECT id, animal,sex FROM animals LIMIT 10";
+
+$state = $sql->prepare($query);
+
+if($state){
+
+  $state->execute();
+
+  $state->bind_result($id,$name,$sex);
+
+  while($state->fetch()){
+    $data[]= ["id" =>$id , "animal" => $name, "sex" =>$sex];
+
+  }
+  $state->close();
+  $json = json_encode($data);
+
+}else{
+
+  $json = json_encode(["data" => "something went wrong"]);
+}
+
+
+echo $json;
+```
+
+</details>
+
+[go back :house:][home]
+
 
 
 ### how to hover

@@ -3,11 +3,110 @@
 - [how to install angular app][install-app]
 - [how to serve angular on digital ocean][digital-angular]
 - [how to run an event in angular][angular-event]
+- [how to change port number for development][ng-port]
+- [how to change host number for development][ng-host]
 
+## Generate
+- [how to generate a component][gen-comp]
+
+
+[ng-host]:#how-to-change-host-number-for-development
+[ng-port]:#how-to-change-port-number-for-development
+[gen-comp]:#how-to-generate-a-component
 [angular-event]:#how-to-run-an-event-in-angular
 [digital-angular]:#how-to-serve-angular-on-digital-ocean
 [install-app]:#how-to-install-angular-app
 
+
+###  how to change host number for development
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [stackoverflow](https://stackoverflow.com/questions/37762125/set-default-host-and-port-for-ng-serve-in-config-file)
+
+1. In the **angular.json** file, try to find the `"serve"` property and type in port like this
+
+```
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "projects": {
+        "my-project": {
+            "architect": {
+                "serve": {
+                    "options": {
+                        "port": 4444,
+                        "host":"0.0.0.0"
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
+
+
+[go back :house:][home]
+
+### how to change port number for development
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [stackoverflow](https://stackoverflow.com/questions/37762125/set-default-host-and-port-for-ng-serve-in-config-file)
+
+
+1. In the **angular.json** file, try to find the `"serve"` property and type in port like this
+
+```
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "projects": {
+        "my-project": {
+            "architect": {
+                "serve": {
+                    "options": {
+                        "port": 4444
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
+
+
+[go back :house:][home]
+
+### how to generate a component
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [angular](https://angular.io/cli/generate#component)
+
+
+```
+ng g component insertComponentName
+```
+
+</details>
+
+[go back :house:][home]
 
 ### how to run an event in angular
 
