@@ -6,7 +6,7 @@
 
 
 ## Classes
-- [how fix the "this" keyword in methods][this-key]
+- [how to fix the "this" keyword in methods][this-key]
 
 ## Get Elements
 
@@ -27,7 +27,7 @@
 
 ## Events
 - [how to hover][event-hover]
-
+- [how to duplicate elements and keep events attached to them][dup-events]
 
 ## Ajax
 - [how to create a simple ajax request][fetch-get]
@@ -37,6 +37,7 @@
 
 - [async functions]
 
+[dup-events]:#how-to-duplicate-elements-and-keep-events-attached-to-them
 [fetch-get]:#how-to-create-a-simple-ajax-request
 [event-hover]:#how-to-hover
 [createElement]:#how-to-create-element
@@ -53,6 +54,47 @@
 
 ___
 
+
+### how to duplicate elements and keep events attached to them
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [stackoverflow](https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript)
+
+There is not really a way to add elements dynamically and attach the same event,
+however, you can add event on the parent or ancestor element and determine if an
+event goes off run a specific function you want to run
+
+```js
+const form = document.getElementById("data-form");
+
+function duplicateRow($){
+  var group = $.parentNode;
+  var copy = group.cloneNode(true);
+  group.insertAdjacentElement("afterend", copy);
+  console.log(copy.children)
+
+}
+
+// If anyone clicks inside the form the event will trigger
+form.addEventListener("click",function(e){
+
+  // if the target element has this class name then code will be ran
+  if(e.target.className == "btn btn-primary btn-duplicate"){
+    console.log(e.target);
+    duplicateRow(e.target)// this function duplicates a row
+  }
+
+})
+```
+
+</details>
+
+[go back :house:][home]
 
 ### how to create a simple ajax request
 
