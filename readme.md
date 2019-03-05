@@ -317,6 +317,13 @@ View Content
 
 If you want to use array methods on DOM elements you have to use this simple method
 
+#### Best Method
+
+```js
+var myArray = Array.from(document.querySelectorAll('.selected'));
+```
+
+#### 2nd Method
 ```js
 var myArray = [].slice.call(document.querySelectorAll('.selected'));
 ```
