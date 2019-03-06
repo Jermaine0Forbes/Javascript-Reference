@@ -9,9 +9,13 @@
 ## CRUD
 - [select data from a database][ng-read]
 
+## Templates
+- [how to use ngIf][ng-if]
+
 ## Generate
 - [how to generate a component][gen-comp]
 
+[ng-if]:#how-to-use-ngif
 [ng-read]:#select-data-from-a-database
 [ng-host]:#how-to-change-host-number-for-development
 [ng-port]:#how-to-change-port-number-for-development
@@ -20,6 +24,51 @@
 [digital-angular]:#how-to-serve-angular-on-digital-ocean
 [install-app]:#how-to-install-angular-app
 
+
+### how to use ngIf
+
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [angular](https://angular.io/guide/template-syntax#ngif)
+
+**My definition:** ngif is the if statement for angular. If the a certain value is
+set in the component then it will display the information to the page. However, if it is not set it
+will not show any content at
+
+**In app.component.html**
+```html
+<!-- it shouldn't display anything since there was no value assigned to it -->
+<p *ngIf="status">I see you</p>
+```
+**In app.component.ts**
+```js
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  status:string;
+
+  constructor(private http: HttpClient){
+
+  }
+
+
+}
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ### select data from a database
 
