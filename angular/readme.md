@@ -11,10 +11,13 @@
 
 ## Templates
 - [how to use ngIf][ng-if]
+- [how to use ngFor][ng-for]
+- [how to do two-way data binding][]
 
 ## Generate
 - [how to generate a component][gen-comp]
 
+[ng-for]:#how-to-use-ngFor
 [ng-if]:#how-to-use-ngif
 [ng-read]:#select-data-from-a-database
 [ng-host]:#how-to-change-host-number-for-development
@@ -25,9 +28,26 @@
 [install-app]:#how-to-install-angular-app
 
 
+### how to use ngFor
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [angular](https://angular.io/guide/template-syntax#ngforof)
+
+```html
+<div *ngFor="let hero of heroes">{{hero.name}}</div>
+```
+
+</details>
+
+[go back :house:][home]
+
 ### how to use ngIf
-
-
 
 <details>
 <summary>
