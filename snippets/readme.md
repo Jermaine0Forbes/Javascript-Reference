@@ -1,8 +1,10 @@
-# Javascript Snippets 
+# Javascript Snippets
 
-## Vanilla 
+## Vanilla
 
-## JQuery 
+- [how to duplicate a row][dup-row]
+
+## JQuery
 
 ## Typescript
 
@@ -13,10 +15,47 @@
 ## Both
 - [stick menu][stick-menu]
 
+[dup-row]:#how-to-duplicate-a-row
 [stick-menu]:#stick-menu
 [scroll-visible]:#scroll-visible
 [home]:#javascript-snippets
 [scroll-to]:#scroll-to
+
+
+### how to duplicate a row
+
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+```js
+
+function duplicateRow($){
+  var group = $.parentNode;
+  var copy = group.cloneNode(true);
+  group.insertAdjacentElement("afterend", copy);
+  // console.log(copy.children)
+
+}
+window.addEventListener("click", function(e){
+  if(e.target.name == "duplicate-row" || e.target.className == "fa fa-plus"){
+    let target = e.target;
+    let element = (target.className == "fa fa-plus")? target.parentNode: target;
+    duplicate(element);
+  }
+})//click
+```
+
+```html
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ### Stick Menu
 
@@ -141,65 +180,65 @@ function StickMenu(obj){
 View Content
 </summary>
 
-**Note** You need the the ScrollTo class and this class uses 
+**Note** You need the the ScrollTo class and this class uses
 jquery
 
 ```js
 class ScrollVisible extends ScrollTo {
-    
+
      id:string;
      threshold:number;
      height:number;
-    
+
     constructor(selector, target:string ="body", id:string , threshold:number = 50 ){
         super(selector,target);
-        
+
         this.threshold = threshold;
         this.id = id;
         this.height = $("body").height();
-        
-        
+
+
         this.checkThreshold = this.checkThreshold.bind(this);
         this.onScroll = this.onScroll.bind(this);
         this.onClick = this.onClick.bind(this);
-        
+
     }
-    
+
     checkThreshold(){
         let threshold = (this.height/100)*this.threshold,
             scrollPosition = $(window).scrollTop(),
             selector = $(this.selector);
 //         console.log(`selector is  ${selector}`);
-        
+
         if( threshold <= scrollPosition){
             selector.addClass(this.id).removeClass("fade-out");
-           
+
         }else{
             selector.removeClass(this.id).addClass("fade-out");
         }
-        
-        
+
+
     }
-    
+
     onScroll(){
         const $window = $(window);
-        
+
         $window.on("scroll", this.checkThreshold);
-        
+
     }
-    
+
     onClick(){
         const selector = $(this.selector);
         console.log(this.scroll);
         selector.on("click", this.to);
     }
-    
+
     start(){
         this.onClick();
         this.onScroll();
     }
-} 
-    
+}
+
 ```
 
 </details>
@@ -207,7 +246,7 @@ class ScrollVisible extends ScrollTo {
 [go back :house:][home]
 
 
-### Scroll To 
+### Scroll To
 <details>
 <summary>View Content</summary>
 
@@ -215,43 +254,43 @@ class ScrollVisible extends ScrollTo {
 
 ```js
 class ScrollTo{
-    
+
     selector: string;
     target: string;
     offsetTop: number;
     animationTime: number;
-    
+
     constructor(selector, target:string ="body", offsetTop:number = 200, animationTime:number = 300){
         this.selector = selector;
         this.target = target;
         this.offsetTop = offsetTop;
         this.animationTime = animationTime;
-        
+
         this.scroll= this.scroll.bind(this);
         this.to = this.to.bind(this);
     }
-    
+
     scroll(){
        const selector = $(this.selector);
-        
+
         selector.on("click", this.to);
     }
-    
+
     to(){
         const target = $(this.target).position();
         $("html,body").animate({
             scrollTop:(target.top - this.offsetTop)
         },this.animationTime);
-        
+
         console.log("It is working");
-        
-        return false; 
+
+        return false;
     }
     start(){
         this.scroll();
     }
-} 
-    
+}
+
 
 ```
 
