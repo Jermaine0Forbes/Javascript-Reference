@@ -12,11 +12,16 @@
 ## Templates
 - [how to use ngIf][ng-if]
 - [how to use ngFor][ng-for]
-- [how to do two-way data binding][]
+- [how to do two-way data binding][data-bind]
+
+## Routing
+- [how to do simple routing][ng-route]
 
 ## Generate
 - [how to generate a component][gen-comp]
 
+[data-bind]:#how-to-do-two-way-data-binding
+[ng-route]:#how-to-do-simple-routing
 [ng-for]:#how-to-use-ngFor
 [ng-if]:#how-to-use-ngif
 [ng-read]:#select-data-from-a-database
@@ -26,6 +31,340 @@
 [angular-event]:#how-to-run-an-event-in-angular
 [digital-angular]:#how-to-serve-angular-on-digital-ocean
 [install-app]:#how-to-install-angular-app
+
+
+### how to do two-way data binding
+
+
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [angular](https://angular.io/guide/template-syntax#two-way-binding---)
+
+1. First you have to add the **Forms** component into `app.module.ts`
+
+```js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+// This is how you import the FormsModule
+import { FormsModule } from '@angular/forms';
+
+
+
+import { AppComponent } from './app.component';
+
+
+@NgModule({
+  declarations: [
+  AppComponent
+
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+  // And this is where you add the FormsModule into the component
+      FormsModule
+  ],
+  providers: [],
+  bootstrap: [ AppComponent]
+})
+export class AppModule { }
+
+```
+
+2. Next, create a new component
+
+```
+ng g c bind-ex
+```
+
+3. Within the module of that component create two variables like so
+
+**bind-ex.component.ts**
+
+```js
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-bind-ex',
+  templateUrl: './bind-ex.component.html',
+  styleUrls: ['./bind-ex.component.scss']
+})
+export class BindExComponent implements OnInit {
+
+  titleBlock:string  = "This is a title";
+  pBlock:string  = "This is a paragraph";
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+```
+
+4. Now in the html template create an html code like this, and focus on adding the
+**ngModel** attribute into an input/textarea tag. Wrapping the ngModel attribute into
+a **banana in the box** wrapper like so `[(ngModel)]` . This will allow the two-way data binding
+to happen. Also assigning the variable to ngModel will get the values that were assigned in the
+component.
+
+```html
+<section class=" mb-5">
+
+  <form  method="post">
+    <div class="form-group ">
+      <label>Title</label>
+      <input class="form-control col-4 " type="text" name="title" [(ngModel)]="titleBlock">
+    </div>
+    <div class="form-group ">
+      <label>Paragraph</label>
+      <textarea class="form-control col-4" name="name" rows="8" cols="80"
+      [(ngModel)]="pBlock"
+      ></textarea>
+    </div>
+  </form>
+
+</section>
+<section class=" mb-5">
+  <h2>{{titleBlock}}</h2>
+  <p>
+    {{pBlock}}
+  </p>
+</section>
+```
+5. If everything runs correctly, then you should be able to update multiple values
+with two-way data binding. Also add the component into the **app.module.ts**
+
+```js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FormsModule } from '@angular/forms';
+
+
+
+import { AppComponent } from './app.component';
+
+// Import this shit
+import { BindExComponent } from './bind-ex/bind-ex.component';
+
+
+@NgModule({
+  declarations: [
+  AppComponent,
+  BindExComponent
+
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+      FormsModule
+  ],
+  providers: [],
+  bootstrap: [ AppComponent]
+})
+export class AppModule { }
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+
+### how to do simple routing
+
+**reference**
+- [Angular 7 Tutorial - 23 - Routing and Navigation](https://www.youtube.com/watch?v=Nehk4tBxD4o)
+
+<details>
+<summary>
+View Content
+</summary>
+
+1. Generate several components that you want to be route to
+
+```
+ng g c about
+ng g c contact
+```
+
+2. Import the routes the into `app-routing.module.ts`
+
+```js
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+// this is how you import them
+import { AppComponent } from './app.component';
+import { AboutComponent }     from './about/about.component';
+import { ContactComponent }     from './contact/contact.component';
+
+const routes: Routes = [
+
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes
+  )],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+
+```
+
+3. Include the components into the Routes array and them add them into object literals like
+so
+
+```js
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+// this is how you import them
+import { AppComponent } from './app.component';
+import { AboutComponent }     from './about/about.component';
+import { ContactComponent }     from './contact/contact.component';
+
+// add the routes like so
+const routes: Routes = [
+{path: "about", component:AboutComponent},
+{path: "contact", component:ContactComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes
+  )],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+
+```
+
+4. Export the route components into an array like so
+
+
+```js
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+// this is how you import them
+import { AppComponent } from './app.component';
+import { AboutComponent }     from './about/about.component';
+import { ContactComponent }     from './contact/contact.component';
+
+// add the routes like so
+const routes: Routes = [
+{path: "about", component:AboutComponent},
+{path: "contact", component:ContactComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes
+  )],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+// This is how you create the array
+export const routingComps = [ AppComponent,AboutComponent,ContactComponent];
+
+```
+
+5. Now, include them into `app.module.ts`, and add them inside the **declarations**
+array. Also make sure you have the **AppRoutingModule** in the **imports** array
+
+```js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// include the routingComps like so
+import { AppRoutingModule,routingComps } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+
+@NgModule({
+  declarations: [
+  routingComps
+
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+      FormsModule
+  ],
+  providers: [],
+  bootstrap: [ AppComponent]
+})
+export class AppModule { }
+
+```
+
+6. So in the root component, usually **AppComponent**, add the links to the different
+views with the **routerLink** attribute.
+
+```html
+<header class="bg-dark">
+  <section class="container">
+    <nav class="nav">
+      <li class="nav-item">
+        <!-- add routeLine to the anchor tags -->
+        <a class="nav-link text-white" routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+      <li class="nav-item">
+          <!-- add routeLine to the anchor tags -->
+        <a class="nav-link text-white" routerLink="/animals" routerLinkActive="active">Animals</a>
+      </li>
+    </nav>
+  </section>
+</header>
+
+<main class="container">
+  <h1>App Root</h1>
+  <router-outlet></router-outlet>
+
+</main>
+```
+
+7. Lastly, make sure you add the router-outlet to the root component
+
+
+```html
+<main class="container">
+  <h1>App Root</h1>
+  <router-outlet></router-outlet>
+
+</main>
+
+```
+
+8. Now it should work
+
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to use ngFor
