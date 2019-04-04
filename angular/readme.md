@@ -6,6 +6,9 @@
 - [how to change port number for development][ng-port]
 - [how to change host number for development][ng-host]
 
+## Animations
+- [how to create a simple animation][simple-anime]
+
 ## CRUD
 - [select data from a database][ng-read]
 
@@ -20,6 +23,8 @@
 ## Generate
 - [how to generate a component][gen-comp]
 
+
+[simple-anime]:#how-to-create-a-simple-animation
 [data-bind]:#how-to-do-two-way-data-binding
 [ng-route]:#how-to-do-simple-routing
 [ng-for]:#how-to-use-ngFor
@@ -32,9 +37,169 @@
 [digital-angular]:#how-to-serve-angular-on-digital-ocean
 [install-app]:#how-to-install-angular-app
 
+### how to create a simple animation
+
+**reference**
+- []()
+
+<details>
+<summary>
+View Content
+</summary>
+
+1. Go to **polyfill.ts** and uncomment `import 'web-animations-js'; `, then npm install
+it
+
+```
+npm i --save web-animations-js
+```
+
+2. Import **BrowserAnimationsModule** to app.module and add it into **imports**
+
+```js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// import this shit
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
+import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AnimeComponent } from './anime/anime.component';
+
+@NgModule({
+  declarations: [
+  routingComponents,
+  AnimeComponent
+
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+      FormsModule,
+       BrowserAnimationsModule // add this shit
+  ],
+  providers: [],
+  bootstrap: [ AppComponent]
+})
+export class AppModule { }
+
+```
+
+3. Create a component you want to create animations to
+
+```
+ng g c anime
+```
+
+4. In the component import the animation functions
+
+```js
+import {
+  trigger,
+  state,
+  style,
+  stagger,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
+```
+
+5. In the component add the animations property in the `@Component` decorator, and
+then add a trigger animation like this
+
+```js
+@Component({
+  selector: 'app-anime',
+  templateUrl: './anime.component.html',
+  styleUrls: ['./anime.component.scss'],
+  animations:[
+    trigger("fadeIn",[
+
+      state("open",style({
+        opacity:0.5,
+        fontSize:"5px"
+
+      })
+    ),
+      state("close",style({
+        opacity:1,
+        fontSize:"16px"
+
+      })),
+      transition("open <=> close",[
+        animate("0.5s"),
+      ])
+    ]
+    )
+  ]
+})
+```
+
+
+6. In the HTML template , if you want to make the animation to start right when the page
+loads. Makes sure you add the  name of the trigger and add the expression **in double quotes**
+
+```html
+<!-- add the expression in double quotes or it won't work -->
+<p [@fadeIn]="'open'">
+  anime works!
+</p>
+```
+
+7. If you want to change the state of the animation you have to switch it based on
+a value . So it is recommended to have a ternary operator and have some method
+that will change the value that will ultimately change the state
+
+**In html**
+```html
+<!-- If the isOpen value is true or false it will change the state animation -->
+<div [@fadeIn]="isOpen? 'open' : 'close' ">
+  <p>anime works!</p>
+  <p>anime works!</p>
+  <p>anime works!</p>
+
+</div>
+
+<button type="button" (click)="change()" name="button">change animations</button>
+```
+
+**In the component**
+```js
+export class AnimeComponent implements OnInit {
+
+  isOpen:boolean = false;
+
+  constructor() { }
+
+  //this method will change the value, which will ultimately change the state
+  change(){
+
+    this.isOpen = !this.isOpen;
+    console.log("change is happening")
+  }
+
+  ngOnInit() {
+  }
+
+}
+
+```
+
+
+</details>
+
+[go back :house:][home]
+
 
 ### how to do two-way data binding
-
 
 
 <details>

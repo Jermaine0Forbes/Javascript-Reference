@@ -1,5 +1,15 @@
 # Logs
 
+## 4/2/19
+
+### Angular
+
+- learn how to do route animations
+- learn how to do sequence animations
+- learn the different ways to change states
+- learn how to create reusable animations
+- learn how to use stagger and query in animations
+
 
 ## 3/28/19
 
