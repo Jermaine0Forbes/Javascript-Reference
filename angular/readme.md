@@ -24,6 +24,7 @@
 ## Generate
 - [how to generate a component][gen-comp]
 
+[home]:#angular
 [route-anime]:#how-to-create-route-animations
 [simple-anime]:#how-to-create-a-simple-animation
 [data-bind]:#how-to-do-two-way-data-binding
@@ -41,15 +42,15 @@
 
 ### how to create route animations
 
+**reference**
+- [Angular — Supercharge your Router transitions using animations](https://medium.com/google-developer-experts/angular-supercharge-your-router-transitions-using-new-animation-features-v4-3-3eb341ede6c8)
+- [route transition animations](https://angular.io/guide/route-animations)
 
 <details>
 <summary>
 View Content
 </summary>
 
-**reference**
-- [Angular — Supercharge your Router transitions using animations](https://medium.com/google-developer-experts/angular-supercharge-your-router-transitions-using-new-animation-features-v4-3-3eb341ede6c8)
-- [route transition animations](https://angular.io/guide/route-animations)
 
 1. Go to `app-routing.module.ts` to add data into  routes array
 
