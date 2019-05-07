@@ -8,6 +8,7 @@
 
 ## Animations
 - [how to create a simple animation][simple-anime]
+- [how to create route animations][route-anime]
 
 ## CRUD
 - [select data from a database][ng-read]
@@ -23,7 +24,7 @@
 ## Generate
 - [how to generate a component][gen-comp]
 
-
+[route-anime]:#how-to-create-route-animations
 [simple-anime]:#how-to-create-a-simple-animation
 [data-bind]:#how-to-do-two-way-data-binding
 [ng-route]:#how-to-do-simple-routing
@@ -36,6 +37,152 @@
 [angular-event]:#how-to-run-an-event-in-angular
 [digital-angular]:#how-to-serve-angular-on-digital-ocean
 [install-app]:#how-to-install-angular-app
+
+
+### how to create route animations
+
+**reference**
+- [Angular — Supercharge your Router transitions using animations](https://medium.com/google-developer-experts/angular-supercharge-your-router-transitions-using-new-animation-features-v4-3-3eb341ede6c8)
+- [route transition animations](https://angular.io/guide/route-animations)
+
+<details>
+<summary>
+View Content
+</summary>
+
+1. Go to `app-routing.module.ts` to add data into  routes array
+
+```js
+const routes: Routes = [
+
+  // add the data property, and name it whatever you want
+  // in this example I named a property animation
+  {path:"", component:HomeComponent , data:{animation:"Homepage"}},
+  {path:"about", component:AboutComponent, data:{animation:"Aboutpage"}},
+  {path:"animals", component:AnimalsComponent},
+  {path:"two-way", component:BindExComponent},
+  {path:"anime", component:AnimeComponent},
+  {path:"**", component:ErrorComponent},
+
+];
+
+```
+
+2. In `app-component.html`, wrap the `router-outlet` in a div tag that has a
+animation trigger and a method that takes in route data value that will be passed
+to the router outlet
+
+```html
+
+<main class="container">
+  <h1>App Root</h1>
+
+  <!-- routeAnimations is the name of an animation trigger that will fire off only
+      if value was assigned to #outlet
+  -->
+  <div [@routeAnimations]="prepareOutlet(outlet)">
+
+    <!-- the #outlet is a temporary variable that will grab the route data
+        that you have created in the app routing module paths, once data is assigned
+        to the #outlet variable it will trigger the prepareOutlet method
+    -->
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+
+
+</main>
+
+```
+
+3. In `app.component.ts`, create the method **prepareOutlet** like so and import
+the **RouterOutlet** class
+
+```js
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+
+})
+export class AppComponent {
+
+
+  constructor(private http: HttpClient){
+
+  }
+
+  prepareOutlet(outlet: RouterOutlet){
+    // this will honestly just return the value of the animation property that was
+    // made in the app-routing module. The method in itself is not important it
+    // is just supposed to trigger the animation
+     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+
+}
+
+```
+
+4. Now, it's time to create the **routeAnimations** trigger animation. So we first
+have to import all the functions the animations library
+
+```js
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { RouterOutlet } from '@angular/router';
+
+// Import these animation functions from this library
+import {
+  trigger,
+  state,
+  style,
+  stagger,
+  group,
+  query,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  animations:[
+    // this creates the routeAnimations trigger
+    trigger('routeAnimations',[
+      // I think this means that if any state happens then execute this transition
+      transition("* <=> *",[
+        query(":enter, :leave", style({ position:"fixed", width:"100%"}),{optional:true}),
+        //the group function runs several animations at the same time
+        group([
+          query(':enter', [
+            style({ transform: 'translateX(100%)' }),
+            animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' }))
+            ], { optional: true }),
+
+          query(':leave', [
+            style({ transform: 'translateX(0%)' }),
+            animate('0.5s ease-in-out', style({ transform: 'translateX(-100%)' }))
+            ], { optional: true }),
+        ])//group
+      ])//transition
+    ])//trigger - routeAnimations
+  ]//animations
+})
+
+```
+
+5. After all that the animations should run, when you go to a different route
+
+</details>
+
+[go back :house:][home]
+
 
 ### how to create a simple animation
 

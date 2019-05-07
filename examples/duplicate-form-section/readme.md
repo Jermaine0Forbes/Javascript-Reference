@@ -1,8 +1,14 @@
-# Logs
+# Duplicate Form Section
 
-## 4/11/19
+## Date 5/7/19
+
+I created this simple application that allowed you to add/subtract multiple  form sections into a form. It was some sort of coding challenge from "Less Paper Co.",
+I don't want to delete it, so I just want to past my code here. Maybe it will be
+useful in the future
+
 
 ```html
+
 
 <div class="row">
   <div class="col-md-12">
@@ -76,32 +82,6 @@
 
   })()
 </script>
-```
-
-## 4/2/19
-
-### Angular
-
-- learn how to do route animations
-- learn how to do sequence animations
-- learn the different ways to change states
-- learn how to create reusable animations
-- learn how to use stagger and query in animations
 
 
-## 3/28/19
-
-### For Angular Animations
-
-1. import BrowserAnimationsModule to app.module
-
-```
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-```
-
-2. find polyfill file, and uncomment `import 'web-animations-js';`. And run this code
-
-```
-npm install --save web-animations-js
 ```
