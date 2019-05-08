@@ -20,17 +20,25 @@
 
 ## Routing
 - [how to do simple routing][ng-route]
+- [how to add routing in a feature module][route-feature]
 
 ## NgModule
 - [how to import ngmodule][import-mod]
+- [how to add routing in a feature module][route-feature]
 
-## Services
+## Form
+- [how to get value from an input element][form-inpt]
+- [how to create a form group][form-group]
 
 ## Generate
 - [how to generate a component][gen-comp]
 - [how to generate a module][gen-mod]
 - [how to generate a service][gen-serv]
 
+[form-group]:#how-to-create-a-form-group
+[form-inpt]:#how-to-get-value-from-an-input-element
+[route-feature]:#how-to-add-routing-in-a-feature-module
+[gen-mod]:#how-to-generate-a-module
 [import-mod]:#how-to-import-ngmodule
 [gen-serv]:#how-to-generate-a-service
 [home]:#angular
@@ -49,6 +57,352 @@
 [install-app]:#how-to-install-angular-app
 
 ---
+
+
+### how to create a form group
+
+**reference**
+- [Angular 2 Cannot find control with unspecified name attribute on formArrays](https://stackoverflow.com/questions/43437726/angular-2-cannot-find-control-with-unspecified-name-attribute-on-formarrays)
+- [Model Driven Forms](https://codecraft.tv/courses/angular/forms/model-driven/)
+
+<details>
+<summary>
+View Content
+</summary>
+
+**people.component.ts**
+
+```js
+import { Component, OnInit } from '@angular/core';
+import {LocateService} from "../locate.service";
+import { FormControl, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-people',
+  templateUrl: './people.component.html',
+  styleUrls: ['./people.component.scss']
+})
+export class PeopleComponent implements OnInit {
+
+  private testForm = new FormGroup({
+     amountField :  new FormControl(1),
+     summaryField : new FormControl("summary")
+  })
+
+  private submitted:boolean = false;
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+  onSubmit(){
+    console.log(this.testForm)
+
+  }
+
+
+}
+
+```
+
+**people.component.html**
+```html
+
+<h2>Form input</h2>
+<form  (ngSubmit)="onSubmit()" [formGroup]="testForm">
+  <div class="form-group">
+    <input type="text" class="form-control col-3" name="amount" formControlName="amountField" >
+  </div>
+  <div class="form-group">
+    <textarea class="form-control col-3" name="summary" rows="8" cols="80"  formControlName="summaryField"></textarea>
+  </div>
+  <input type="submit" [disabled]="submitted" >
+</form>
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### how to get value from an input element
+
+**reference**
+- [Angular 4 - get input value](https://stackoverflow.com/questions/47529327/angular-4-get-input-value)
+
+<details>
+<summary>
+View Content
+</summary>
+
+
+#### Using FormControl
+
+
+**people.component.ts**
+
+make sure you add the **FormControl** module
+
+```js
+import { Component, OnInit } from '@angular/core';
+import {LocateService} from "../locate.service";
+import { FormControl, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-people',
+  templateUrl: './people.component.html',
+  styleUrls: ['./people.component.scss']
+})
+export class PeopleComponent implements OnInit {
+
+  private amountField :  new FormControl(1);
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+  onSubmit(){
+    console.log(this.amountField)
+
+  }
+
+}
+
+```
+
+**people.component.html**
+
+```html
+<form  (ngSubmit)="onSubmit()" >
+  <div class="form-group">
+    <input type="text" class="form-control col-3" name="amount" [formControl]="amountField" >
+  </div>
+  <input type="submit" />
+</form>
+```
+
+
+**locate-people.module.ts**
+
+make sure you add **FormsModule** and **ReactiveFormsModule** in the imports property
+
+```js
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {PeopleComponent} from './people/people.component'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {LocateRoutingModule, routesComp} from "./locate-routing/locate-routing.module";
+import {LocateService} from "./locate.service";
+
+
+@NgModule({
+  declarations: [routesComp],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    LocateRoutingModule,
+    // Add these modules into the imports in order for the form control to work
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers:[LocateService],
+  exports:[routesComp]
+})
+export class LocatePeopleModule { }
+
+```
+
+
+#### Using the ngModel
+
+**people.component.html**
+
+```html
+<h2>Form input</h2>
+<form  (ngSubmit)="onSubmit()" method="post">
+  <div class="form-group">
+    <input type="text" class="form-control col-3" name="amount" [(ngModel)]="num" >
+  </div>
+  <input type="submit">
+</form>
+```
+
+**people.component.ts**
+
+```js
+export class PeopleComponent implements OnInit {
+
+  private num:string = "";
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+  onSubmit(){
+    console.log(this.num)
+  }
+
+}
+```
+
+#### Using the $event
+
+**people.component.html**
+```html
+
+<h2>Form input</h2>
+<form  (ngSubmit)="onSubmit($event)" >
+  <div class="form-group">
+    <input type="text" class="form-control col-3" name="amount" >
+  </div>
+  <input type="submit" >
+</form>
+```
+**people.component.ts**
+```js
+export class PeopleComponent implements OnInit {
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+  onSubmit(val){
+    let v = val.target.amount.value;
+  }
+
+}
+
+```
+
+</details>
+
+[go back :house:][home]
+
+### how to add routing in a feature module
+
+**reference**
+- [Setting up Routing in a multi-module Angular 4 app using the Router module](https://medium.com/@astamataris/setting-up-routing-in-a-multi-module-angular-4-app-using-the-router-module-d8e610196443)
+
+<details>
+<summary>
+View Content
+</summary>
+
+1. First create a module, and a component in the module
+
+```
+ng g module animal
+
+ng g c animal/animal
+
+```
+
+2. Next create a routing module in the module folder
+
+```
+touch animal/animal-routing.module.ts
+```
+
+3. In the routing module add code like this. **Note:** make sure you add the
+`RouterModule.forChild()` in the imports property
+
+```js
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+//Import  these libraries in order to do routing properly
+import { Routes, RouterModule } from '@angular/router';
+
+// import the component you created
+import {AnimalComponent} from "./animal/animal.component";
+
+
+const animalRoutes: Routes = [
+  {path:"animal", component:AnimalComponent}
+];
+
+@NgModule({
+  // It is important to  add the method forChild as opposed to forRoot
+  // you will get an error if you dont
+  imports: [RouterModule.forChild(animalRoutes)],
+  exports: [
+    RouterModule
+  ]
+})
+export class AnimalRoutingModule { }
+
+export const routesComp = [AnimalComponent]
+```
+
+4. In the module that you created import the components from the routing module
+and add the routes into the **declarations** and the routing module into the **imports**
+
+```js
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {PeopleComponent} from './people/people.component'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import {AnimalRoutingModule, routesComp} from "./animal-routing.module";
+
+
+@NgModule({
+  declarations: [routesComp],
+  imports: [
+    CommonModule,
+    AnimalRoutingModule
+  ],
+  exports:[routesComp]
+})
+export class AnimalModule { }
+```
+
+5. Now, in the `app.module` add the newly created module into the **imports** property
+
+```js
+
+// imports
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+import {AnimalModule} from "./animal/animal.component";
+
+
+// @NgModule decorator with its metadata
+@NgModule({
+  declarations: [
+    AppComponent,
+    ItemDirective
+  ],
+  imports: [
+    AnimalModule // add this module into here
+    AppRoutingModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
+6. Everything should work, if it doesn't make sure you add the module before `AppRoutingModule`
+
+</details>
+
+[go back :house:][home]
+
 
 ### how to import ngmodule
 
