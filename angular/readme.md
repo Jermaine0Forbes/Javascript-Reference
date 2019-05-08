@@ -21,9 +21,18 @@
 ## Routing
 - [how to do simple routing][ng-route]
 
+## NgModule
+- [how to import ngmodule][import-mod]
+
+## Services
+
 ## Generate
 - [how to generate a component][gen-comp]
+- [how to generate a module][gen-mod]
+- [how to generate a service][gen-serv]
 
+[import-mod]:#how-to-import-ngmodule
+[gen-serv]:#how-to-generate-a-service
 [home]:#angular
 [route-anime]:#how-to-create-route-animations
 [simple-anime]:#how-to-create-a-simple-animation
@@ -38,6 +47,63 @@
 [angular-event]:#how-to-run-an-event-in-angular
 [digital-angular]:#how-to-serve-angular-on-digital-ocean
 [install-app]:#how-to-install-angular-app
+
+---
+
+### how to import ngmodule
+
+<details>
+<summary>
+View Content
+</summary>
+
+```js
+import { NgModule } from '@angular/core';
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### how to generate a module
+
+<details>
+<summary>
+View Content
+</summary>
+
+```
+ng g module insertModuleName
+```
+
+</details>
+
+[go back :house:][home]
+
+### how to generate a service
+
+<details>
+<summary>
+View Content
+</summary>
+
+#### To create a service in the root folder
+
+```
+ng g service insertServiceName
+```
+
+#### To create a service in a different folder
+
+```
+ng g service  path/to/folder/insertServiceName
+```
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to create route animations
@@ -743,8 +809,6 @@ export class AppComponent {
 
 ### select data from a database
 
-**reference**
-- []()
 
 <details>
 <summary>
@@ -1073,7 +1137,7 @@ number like so
 
 [go back :house:][home]
 
-## how to install angular app
+### how to install angular app
 
 
 <details>
