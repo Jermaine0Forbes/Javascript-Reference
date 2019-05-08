@@ -138,10 +138,11 @@ View Content
 </summary>
 
 
+
+---
 <details>
 <summary>
-#### Using the Template Reference Variable
----
+ Using the Template Reference Variable
 </summary>
 
 **people.component.ts**
@@ -183,11 +184,11 @@ export class PeopleComponent implements OnInit {
 
 </details>
 
-
-
-
-#### Using FormControl
 ---
+<details>
+<summary>
+Using FormControl
+</summary>
 
 **people.component.ts**
 
@@ -265,9 +266,13 @@ export class LocatePeopleModule { }
 
 ```
 
+</details>
 
-#### Using the ngModel
 ---
+<details>
+<summary>
+Using the ngModel
+</summary>
 
 **people.component.html**
 
@@ -300,8 +305,14 @@ export class PeopleComponent implements OnInit {
 }
 ```
 
-#### Using the $event
+
+</details>
+
 ---
+<details>
+<summary>
+Using the $event
+</summary>
 
 **people.component.html**
 ```html
@@ -330,6 +341,9 @@ export class PeopleComponent implements OnInit {
 }
 
 ```
+
+</details>
+
 
 </details>
 
