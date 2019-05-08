@@ -138,8 +138,11 @@ View Content
 </summary>
 
 
+<details>
+<summary>
 #### Using the Template Reference Variable
 ---
+</summary>
 
 **people.component.ts**
 
@@ -176,6 +179,11 @@ export class PeopleComponent implements OnInit {
 </form>
 
 ```
+
+
+</details>
+
+
 
 
 #### Using FormControl
