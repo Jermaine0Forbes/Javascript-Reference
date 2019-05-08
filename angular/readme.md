@@ -138,8 +138,48 @@ View Content
 </summary>
 
 
-#### Using FormControl
+#### Using the Template Reference Variable
+---
 
+**people.component.ts**
+
+```js
+
+export class PeopleComponent implements OnInit {
+
+  private submitted:boolean = false;
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+  onSubmit(inpt){
+
+    console.log(inpt.value)
+
+  }
+
+}
+```
+
+**people.component.html**
+
+```html
+
+<h2>Form input</h2>
+<form  (ngSubmit)="onSubmit(amountInput)" >
+  <div class="form-group">
+    <input type="text" class="form-control col-3" name="amount" #amountInput>
+  </div>
+  <input type="submit" >
+</form>
+
+```
+
+
+#### Using FormControl
+---
 
 **people.component.ts**
 
@@ -219,6 +259,7 @@ export class LocatePeopleModule { }
 
 
 #### Using the ngModel
+---
 
 **people.component.html**
 
@@ -252,6 +293,7 @@ export class PeopleComponent implements OnInit {
 ```
 
 #### Using the $event
+---
 
 **people.component.html**
 ```html
