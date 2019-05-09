@@ -17,6 +17,8 @@
 - [how to use ngIf][ng-if]
 - [how to use ngFor][ng-for]
 - [how to do two-way data binding][data-bind]
+- [how to create a template reference variable][temp-var]
+- [how to pass data into a subcomponent/child component][data-child]
 
 ## Routing
 - [how to do simple routing][ng-route]
@@ -35,6 +37,8 @@
 - [how to generate a module][gen-mod]
 - [how to generate a service][gen-serv]
 
+[data-child]:#how-to-pass-data-into-a-child-component
+[temp-var]:#how-to-create-a-template-reference-variable
 [form-group]:#how-to-create-a-form-group
 [form-inpt]:#how-to-get-value-from-an-input-element
 [route-feature]:#how-to-add-routing-in-a-feature-module
@@ -58,23 +62,192 @@
 
 ---
 
-
-### how to create a form group
-
-**reference**
-- [Angular 2 Cannot find control with unspecified name attribute on formArrays](https://stackoverflow.com/questions/43437726/angular-2-cannot-find-control-with-unspecified-name-attribute-on-formarrays)
-- [Model Driven Forms](https://codecraft.tv/courses/angular/forms/model-driven/)
+### how to pass data into a child component
 
 <details>
 <summary>
 View Content
 </summary>
 
+**reference**
+- [Sharing Data Between Angular Components - Four Methods](https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/)
+
+1. In the parent component add a property with a value
+
+```js
+leUrls: ['./people.component.scss']
+})
+export class PeopleComponent implements OnInit {
+
+  private parentMessage: string = "this is a message from the parent";
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+
+}
+```
+
+2. In the child component add the Input module, and assign it to a property like so
+
+```js
+//import the Input module like so
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-people-list',
+  templateUrl: './people-list.component.html',
+  styleUrls: ['./people-list.component.scss']
+})
+export class PeopleListComponent implements OnInit {
+
+// Add the input decorator to property like this
+  @Input() person;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+
+3. In the parent template, pass the property into child selector like this
+
+```html
+<p>This is the parent template</p>
+  <app-people-list [person]="parentMessage"></app-people-list>
+
+```
+
+4. Now, in the child template add the property into your view
+
+```html
+<p>This is the child template</p>
+{{person}} <!-- this should print out : this is a message from the parent -->
+```
+
+</details>
+
+[go back :house:][home]
+
+### how to create a template reference variable
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [Working with Angular 5 Template Reference Variables](https://itnext.io/working-with-angular-5-template-reference-variable-e5aa59fb9af)
+
+**My definition:** The template reference variable grabs the element from the view and
+allows you to add the variable into a method that you created into a component
+
+```html
+<!-- once the submit button is clicked the onSubmit method will grab the input
+    element value -->
+<form  (ngSubmit)="onSubmit(amountInput)" >
+  <div class="form-group">
+    <!-- this will grab this specific input element -->
+    <input type="text" class="form-control col-3" name="amount" #amountInput>
+  </div>
+  <input type="submit" >
+</form>
+```
+```js
+export class PeopleComponent implements OnInit {
+
+  private submitted:boolean = false;
+
+  constructor(private service: LocateService) { }
+
+  ngOnInit() {
+  }
+
+  onSubmit(inpt){
+    // this will output the input value
+    console.log(inpt.value)
+  }
+
+}
+```
+
+</details>
+
+[go back :house:][home]
+
+
+
+### how to create a form group
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [Angular 2 Cannot find control with unspecified name attribute on formArrays](https://stackoverflow.com/questions/43437726/angular-2-cannot-find-control-with-unspecified-name-attribute-on-formarrays)
+- [Model Driven Forms](https://codecraft.tv/courses/angular/forms/model-driven/)
+
+
+1. Add FormsModule and ReactiveFormsModule in the imports property of the module
+
+<details>
+<summary>
+View Content
+</summary>
+
+```js
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {PeopleComponent} from './people/people.component'
+import { HttpClientModule } from '@angular/common/http';
+import {LocateRoutingModule, routesComp} from "./locate-routing/locate-routing.module";
+import {LocateService} from "./locate.service";
+
+// These are the things you import
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+@NgModule({
+  declarations: [routesComp],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    LocateRoutingModule,
+    // this is where you add it
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers:[LocateService],
+  exports:[routesComp]
+})
+export class LocatePeopleModule { }
+
+```
+
+</details>
+
+
+2. import FormControl and FormGroup into the component, then create FormGroup like
+the example below
+
+<details>
+<summary>
+View Content
+</summary>
 **people.component.ts**
 
 ```js
 import { Component, OnInit } from '@angular/core';
 import {LocateService} from "../locate.service";
+
+// Import these classes
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -84,6 +257,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class PeopleComponent implements OnInit {
 
+// Create the  FormGroup like so
   private testForm = new FormGroup({
      amountField :  new FormControl(1),
      summaryField : new FormControl("summary")
@@ -97,30 +271,50 @@ export class PeopleComponent implements OnInit {
   }
 
   onSubmit(){
+
+    //this will output all the properties that come with the FormGroup class
     console.log(this.testForm)
 
   }
 
-
 }
 
 ```
+</details>
 
+
+3. In the view make sure you add formGroup syntax with the name of the form group
+you assigned to in the component, and when you when you add the form controls. Remember
+to not put them in brackets and name them `formControlName` as opposed `formControl`
+
+<details>
+<summary>
+View Content
+</summary>
 **people.component.html**
 ```html
 
 <h2>Form input</h2>
+<!-- add the name of the formGroup -->
 <form  (ngSubmit)="onSubmit()" [formGroup]="testForm">
   <div class="form-group">
+    <!-- make sure you don't put formControlName in brackets it will throw an error -->
     <input type="text" class="form-control col-3" name="amount" formControlName="amountField" >
   </div>
   <div class="form-group">
     <textarea class="form-control col-3" name="summary" rows="8" cols="80"  formControlName="summaryField"></textarea>
   </div>
+  <!-- if submitted property returns true, it will disable the button
+      meaning, that you won't be able to click on it-->
   <input type="submit" [disabled]="submitted" >
 </form>
 
 ```
+
+</details>
+
+
+4. Everything should work, so that's about it.
 
 </details>
 
