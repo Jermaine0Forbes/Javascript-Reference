@@ -1,5 +1,18 @@
 # Logs
 
+
+## 5/10/19
+
+### Angular
+- Learn how to use guards
+- learn about directives
+- learn how to create custom events
+- learn how to change title & meta tags
+- learn how to use pipes
+- learn how to use jwt tokens
+- learn how to use httpclient generics
+
+
 ## 4/11/19
 
 ```html

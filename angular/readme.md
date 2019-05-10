@@ -10,6 +10,9 @@
 - [how to create a simple animation][simple-anime]
 - [how to create route animations][route-anime]
 
+## Head Tag
+- [how to change the title and meta tags][title-meta]
+
 ## CRUD
 - [select data from a database][ng-read]
 - [how to add http params to your request][http-param]
@@ -42,6 +45,7 @@
 - [how to generate a module][gen-mod]
 - [how to generate a service][gen-serv]
 
+[title-meta]:#how-to-change-the-title-and-meta-tags
 [basic-service]:#how-to-set-up-a-typical-service
 [redirect-comp]:#how-to-redirect-in-a-component
 [http-param]:#how-to-add-http-params-to-your-request
@@ -69,6 +73,233 @@
 [install-app]:#how-to-install-angular-app
 
 ---
+
+### how to change the title and meta tags
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [Angular Meta Service for Meta Tags](https://www.concretepage.com/angular/angular-meta-service-for-meta-tags)
+- [Dynamically add meta description based on route in Angular](https://stackoverflow.com/questions/48330535/dynamically-add-meta-description-based-on-route-in-angular)
+
+---
+**The proper way to do it**
+
+<details>
+<summary>
+View Content
+</summary>
+
+1. In the routing module, add data to the routes
+
+```js
+
+... const appRoutes: Routes = [
+    {
+        path: 'path1', loadChildren: './path1#path1Module',
+        data: {
+            title: '...',
+            description: '...',
+            keywords: '...'
+        }
+    },
+    {
+        path: 'path2', loadChildren: './path2#path2Module',
+        data: {
+            title: '...',
+            description: '...',
+            keywords: '...'
+        }
+    } ...
+```
+
+2. In the component import these libraries and inject them into the constructor
+
+```js
+
+import { Component, OnInit } from '@angular/core';
+// import all these things
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import { Title,Meta } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss']
+})
+export class AboutComponent implements OnInit {
+
+// Inject these things
+  constructor(private router: Router, private route: ActivatedRoute, ,private title: Title, private meta: Meta) { }
+
+  ngOnInit() {
+}
+
+}
+
+
+```
+
+3. Now in the ngOnInit, add this code to grab the data from the route module
+
+
+```js
+export class AboutComponent implements OnInit {
+
+// Inject these things
+  constructor(private router: Router, private route: ActivatedRoute, ,private title: Title, private meta: Meta) { }
+
+  ngOnInit() {
+
+    this.router.events
+            .filter((event) => event instanceof NavigationEnd)
+            .map(() => this.route)
+            .map((route) => {
+                while (route.firstChild) route = route.firstChild;
+                return route;
+            })
+            .filter((route) => route.outlet === 'primary')
+            .mergeMap((route) => route.data)
+            .subscribe((event) => {
+                this.updateDescription(event['description'], event['keywords'], event['title']);
+            });
+
+}
+
+}
+
+```
+
+
+4. Now, add the method updateDescription in order for everything to work
+
+```js
+
+export class AboutComponent implements OnInit {
+
+// Inject these things
+  constructor(private router: Router, private route: ActivatedRoute, ,private title: Title, private meta: Meta) { }
+
+  ngOnInit() {
+
+    this.router.events
+            .filter((event) => event instanceof NavigationEnd)
+            .map(() => this.route)
+            .map((route) => {
+                while (route.firstChild) route = route.firstChild;
+                return route;
+            })
+            .filter((route) => route.outlet === 'primary')
+            .mergeMap((route) => route.data)
+            .subscribe((event) => {
+                this.updateDescription(event['description'], event['keywords'], event['title']);
+            });
+
+}
+
+updateDescription(desc: string, keywords: string, title: string) {
+    this.titleService.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: desc })
+    this.meta.updateTag({ name: 'keywords', content: keywords })
+    this.meta.updateTag({ name: 'og:title', content: title })
+    this.meta.updateTag({ name: 'og:description', content: desc })
+}
+
+}
+
+
+
+```
+
+</details>
+
+---
+**Here is a simple way to do it**
+
+<details>
+<summary>
+View Content
+</summary>
+
+1. Import Title & Meta in the Component and inject them into the constructor
+
+```js
+
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+
+//import these libraries
+import { Title,Meta } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss']
+})
+export class AboutComponent implements OnInit {
+
+// inject them into the constructor
+  constructor(private router: Router,private title: Title,private meta: Meta) { }
+
+  ngOnInit() {
+
+  }
+
+}
+
+
+```
+
+2. Now, in the ngOnInit method add the methods of title and meta to change the tags
+
+```js
+
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+
+//import these libraries
+import { Title,Meta } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss']
+})
+export class AboutComponent implements OnInit {
+
+// inject them into the constructor
+  constructor(private router: Router,private title: Title,private meta: Meta) { }
+
+  ngOnInit() {
+    this.title.setTitle("About Page")
+    this.meta.updateTag({name:"description", content:"this is a description of the about page"})
+    this.meta.updateTag({name:"keywords", content:"about"})
+    this.meta.updateTag({name:"author", content:"jermaine forbes"})
+    this.meta.updateTag({name:"date", content:"2019-05-10", scheme:"YYYY-MM-DD"})
+    this.meta.updateTag({property: 'og:title', content: "About Page"});
+    this.meta.updateTag({property: 'og:type', content: "website"});
+  }
+
+}
+
+
+```
+
+</details>
+
+
+
+
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to set up a typical service
