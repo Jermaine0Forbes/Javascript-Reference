@@ -12,6 +12,7 @@
 
 ## CRUD
 - [select data from a database][ng-read]
+- [how to add http params to your request][http-param]
 
 ## Templates
 - [how to use ngIf][ng-if]
@@ -23,6 +24,7 @@
 ## Routing
 - [how to do simple routing][ng-route]
 - [how to add routing in a feature module][route-feature]
+- [how to redirect in a component][redirect-comp]
 
 ## NgModule
 - [how to import ngmodule][import-mod]
@@ -32,11 +34,17 @@
 - [how to get value from an input element][form-inpt]
 - [how to create a form group][form-group]
 
+## Service
+- [how to set up a typical service][basic-service]
+
 ## Generate
 - [how to generate a component][gen-comp]
 - [how to generate a module][gen-mod]
 - [how to generate a service][gen-serv]
 
+[basic-service]:#how-to-set-up-a-typical-service
+[redirect-comp]:#how-to-redirect-in-a-component
+[http-param]:#how-to-add-http-params-to-your-request
 [data-child]:#how-to-pass-data-into-a-child-component
 [temp-var]:#how-to-create-a-template-reference-variable
 [form-group]:#how-to-create-a-form-group
@@ -61,6 +69,130 @@
 [install-app]:#how-to-install-angular-app
 
 ---
+
+
+### how to set up a typical service
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- []()
+
+1.
+
+```js
+
+```
+
+</details>
+
+[go back :house:][home]
+
+### how to redirect in a component
+
+<details>
+<summary>
+View Content
+</summary>
+
+
+**reference**
+- [Redirect within component Angular 2](https://stackoverflow.com/questions/32896407/redirect-within-component-angular-2)
+
+
+```js
+import {Router} from '@angular/router';
+
+constructor(private artistService: ArtistService, private router: Router) { }
+
+  selectRow(id: number): void{
+       this.router.navigate([`./artist-detail/${id}`]);
+
+  }
+```
+
+</details>
+
+[go back :house:][home]
+
+
+
+### how to add http params to your request
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [Angular HTTP Client - Quickstart Guide](https://blog.angular-university.io/angular-http/)
+
+**My definition:** I think this class is extremely useful if you want to add several parameters
+to get/post/put request for the httpclient this is a lot easier
+
+**With HttpParams**
+
+```js
+import { Injectable } from '@angular/core';
+// Make sure you add HttpParams
+import { HttpClient,HttpParams } from '@angular/common/http';
+import {Observable} from "rxjs/Observable";
+import {People} from "./people";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LocateService {
+  private url:string = "http://php.jforbes.site/ajax/get-people.php";
+  constructor(private http: HttpClient) { }
+
+  getPeople(num){
+    // this will set the url to look like this: http://php.jforbes.site/ajax/get-people.php?limit=num
+      const params = new HttpParams().set("limit", num);
+
+     return this.http.get(this.url,{params})
+
+  }//getPeople
+
+}//LocateService
+```
+
+
+**The old way**
+
+```js
+import { Injectable } from '@angular/core';
+// Make sure you add HttpParams
+import { HttpClient,HttpParams } from '@angular/common/http';
+import {Observable} from "rxjs/Observable";
+import {People} from "./people";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LocateService {
+  private url:string = "http://php.jforbes.site/ajax/get-people.php?";
+  constructor(private http: HttpClient) { }
+
+  getPeople(num){
+    // this will look like: http://php.jforbes.site/ajax/get-people.php?limit=num
+     return this.http.get(this.url+"limit="+num)
+
+  }//getPeople
+
+}//LocateService
+```
+
+
+
+
+
+</details>
+
+[go back :house:][home]
 
 ### how to pass data into a child component
 
