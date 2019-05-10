@@ -78,14 +78,111 @@
 View Content
 </summary>
 
-**reference**
-- []()
 
-1.
+**How I see it:** Services are pretty much used to make calls to the database,
+uploading things, and making API calls to other websites. So if you need to do any
+of that. You should create a service
+
+---
+<details>
+<summary>
+1. First create the service. I'm creating a service called student and putting the
+service into the student folder
+</summary>
+```
+ng g service student/student
+```
+</details>
+
+---
+<details>
+<summary>
+2. Now import the student service into a module called StudentModule, within the
+providers property
+</summary>
 
 ```js
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {StudentService} from "./student.service";
+
+@NgModule({
+  declarations: [StudentComponent],
+  imports: [
+    CommonModule
+  ],
+  providers:[StudentService]
+})
+export class StudentModule { }
 
 ```
+</details>
+
+---
+<details>
+<summary>
+3. In the Service import HttpClient and HttpParams to do a simple REST api call like
+this. And inject the HttpClient in the constructor
+</summary>
+```js
+
+import { Injectable } from '@angular/core';
+import { HttpClient,HttpParams } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class StudentService {
+
+  constructor(private http: HttpClient) { }
+
+  this.url = "http://students.com";
+}
+
+getStudent(id){
+
+  const params = new HttpParams().set("id",id);
+
+  return this.http.get(this.url,{params})
+}
+
+
+```
+</details>
+
+---
+<details>
+<summary>
+4. Now we make a call to the student component when we need to get a student with
+the StudentService. Assuming we already created the StudentComponent, and the StudentRoutingModule
+</summary>
+```js
+import { Component, OnInit } from '@angular/core';
+import {StudentService} from "../student.service";
+
+@Component({
+  selector: 'app-student',
+  templateUrl: './student.component.html',
+  styleUrls: ['./student.component.scss']
+})
+export class StudentComponent implements OnInit {
+
+  constructor(orivate service: StudentService) { }
+
+  ngOnInit() {
+  }
+
+  getOne(number){
+
+    service.getStudent(number).subsribe(res =>{
+      console.log(res)
+    })
+  }
+
+}
+
+```
+</details>
 
 </details>
 
