@@ -124,6 +124,7 @@ export class StudentModule { }
 3. In the Service import HttpClient and HttpParams to do a simple REST api call like
 this. And inject the HttpClient in the constructor
 </summary>
+
 ```js
 
 import { Injectable } from '@angular/core';
@@ -156,6 +157,7 @@ getStudent(id){
 4. Now we make a call to the student component when we need to get a student with
 the StudentService. Assuming we already created the StudentComponent, and the StudentRoutingModule
 </summary>
+
 ```js
 import { Component, OnInit } from '@angular/core';
 import {StudentService} from "../student.service";
