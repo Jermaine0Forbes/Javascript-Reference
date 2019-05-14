@@ -3,6 +3,7 @@
 ## General
 - [how to create an element][createElement]
 - [convert DOM elements to array elements][dom-array]
+- [how to create a DOM element from a string][dom-string]
 
 
 ## Classes
@@ -37,6 +38,7 @@
 
 - [async functions]
 
+[dom-string]:#how-to-create-a-dom-element-from-a-string
 [dup-events]:#how-to-duplicate-elements-and-keep-events-attached-to-them
 [fetch-get]:#how-to-create-a-simple-ajax-request
 [event-hover]:#how-to-hover
@@ -53,6 +55,40 @@
 [home]:#javascript-reference
 
 ___
+
+### how to create a DOM element from a string
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [Creating a new DOM element from an HTML string using built-in DOM methods or Prototype
+](https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro)
+
+If you want to create an element from a string you have created in
+javascript. There is only a couple of methods you can use
+
+```js
+
+let string = "<div> this is a string</div>",
+container = document.getElementById("container");
+
+container.append(string) // doesn't work
+
+container.insertAdjacentHTML("beforeend",string)// this will work
+
+container.innerHTML = string
+ // this will work, however,  it will clear any other content that is in
+ // the container element
+
+
+```
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to duplicate elements and keep events attached to them
