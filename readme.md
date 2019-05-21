@@ -31,13 +31,16 @@
 - [how to duplicate elements and keep events attached to them][dup-events]
 
 ## Ajax
-- [how to create a simple ajax request][fetch-get]
+- [how to use FormData][form-data]
+- [using the request object for fetch][req-fetch]
+- [how to create a simple fetch request][fetch-get]
 
 
 ## Things I need to learn
-
 - [async functions]
 
+[req-fetch]:#using-the-request-object-for-fetch
+[form-data]:#how-to-use-formdata
 [dom-string]:#how-to-create-a-dom-element-from-a-string
 [dup-events]:#how-to-duplicate-elements-and-keep-events-attached-to-them
 [fetch-get]:#how-to-create-a-simple-ajax-request
@@ -55,6 +58,57 @@
 [home]:#javascript-reference
 
 ___
+
+### using the request object for fetch
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Request)
+
+**My definition**: It is not really necessary, but you can use this object
+to make request when using the fetch method
+
+```js
+var request = new Request("http://google.com", {method:"POST", body:data});
+
+fetch(request)
+.then(res => res.text())
+.then( res => console.log(res))
+```
+
+</details>
+
+
+[go back :house:][home]
+
+
+### how to use formdata
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+- [Uploading files using 'fetch' and 'FormData'](https://muffinman.io/uploading-files-using-fetch-multipart-form-data/)
+
+**MDN definition:** The FormData interface provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method.
+
+```js
+let data = new FormData();//creates the object
+
+data.append("file", input.["files"][0])//create the key-value pair
+```
+
+</details>
+
+
+[go back :house:][home]
 
 ### how to create a DOM element from a string
 
