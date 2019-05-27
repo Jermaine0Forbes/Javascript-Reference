@@ -1,8 +1,8 @@
 # Logs
 
 ## 5/20/19
-- FormData for fetch
-- Request Object for fetch
+- FormData for fetch --done
+- Request Object for fetch -- done
 
 
 ## 5/10/19

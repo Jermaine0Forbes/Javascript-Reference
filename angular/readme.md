@@ -2239,6 +2239,44 @@ ng new insert-name-for-app
  npm install --unsafe-perm -g @angular/cli
 ```
 
+#### if you need to change the local host and port number
+
+1. go to the file angular.json file and search for serve property and under that
+search for options. When you find it add the host property and the port property
+
+```
+"serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "options": {
+    "browserTarget": "my-app:build",
+    "port": 1337,
+    "host":"0.0.0.0"
+  },
+
+```
+
+2. Open up the new port with the ufw command like so
+
+```
+sudo ufw allow 1337
+
+```
+
+3. Also if you ever want to see all the ports you type this command
+
+```
+
+sudo ufw status
+```
+
+4. Also if you ever want to delete a port you type this command
+
+```
+sudo ufw status numbered
+
+sudo ufw  delete 22
+```
+
 </details>
 
 [go back :house:][home]

@@ -50,7 +50,7 @@
 [by-tag]:#documentgetelementsbytagname
 [by-class]:#documentgetelementsbyclassname
 [by-id]:#documentgetelementbyid
-[this-key]:#make-the-this-keyword-work
+[this-key]:#how-to-use-the-this-keyword-in-classes
 [query-selector-all]:#documentqueryselectorall
 [query-select]:#documentqueryselector
 [string-search]:#how-to-search-through-a-string
@@ -519,7 +519,7 @@ t.innerHTML = "this is new text";
 
 [go back :house:][home]
 
-### make the this keyword work
+### how to use the "this" keyword in classes
 
 **reference**
 - [What is the proper way to create methods within a class?](https://www.reddit.com/r/javascript/comments/8f8ftu/what_is_the_proper_way_to_create_methods_within_a/)
