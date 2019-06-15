@@ -1,5 +1,12 @@
 # Logs
 
+## 6/4/19
+- Teach how to create an angular Component
+- teach how to create a component within another component
+- talk about the component decorator
+- talk about 
+
+
 ## 5/20/19
 - FormData for fetch --done
 - Request Object for fetch -- done

@@ -655,11 +655,11 @@ View Content
 - [Model Driven Forms](https://codecraft.tv/courses/angular/forms/model-driven/)
 
 
-1. Add FormsModule and ReactiveFormsModule in the imports property of the module
+
 
 <details>
 <summary>
-View Content
+1. Add FormsModule and ReactiveFormsModule in the imports property of the module
 </summary>
 
 ```js
@@ -696,13 +696,13 @@ export class LocatePeopleModule { }
 </details>
 
 
-2. import FormControl and FormGroup into the component, then create FormGroup like
-the example below
+
 
 <details>
 <summary>
-View Content
+2. import FormControl and FormGroup into the component, then create FormGroup like the example below
 </summary>
+
 **people.component.ts**
 
 ```js
@@ -745,14 +745,15 @@ export class PeopleComponent implements OnInit {
 </details>
 
 
-3. In the view make sure you add formGroup syntax with the name of the form group
-you assigned to in the component, and when you when you add the form controls. Remember
-to not put them in brackets and name them `formControlName` as opposed `formControl`
+
 
 <details>
 <summary>
-View Content
+3. In the view make sure you add formGroup syntax with the name of the form group
+you assigned to in the component, and when you when you add the form controls. Remember
+to not put them in brackets and name them `formControlName` as opposed `formControl`
 </summary>
+
 **people.component.html**
 ```html
 
@@ -785,15 +786,15 @@ View Content
 
 ### how to get value from an input element
 
-**reference**
-- [Angular 4 - get input value](https://stackoverflow.com/questions/47529327/angular-4-get-input-value)
+
 
 <details>
 <summary>
 View Content
 </summary>
 
-
+**reference**
+- [Angular 4 - get input value](https://stackoverflow.com/questions/47529327/angular-4-get-input-value)
 
 ---
 <details>
