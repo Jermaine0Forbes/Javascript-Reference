@@ -5,6 +5,7 @@
 - [how to run an event in angular][angular-event]
 - [how to change port number for development][ng-port]
 - [how to change host number for development][ng-host]
+- [how to move angular into production][ang-prod]
 
 ## Animations
 - [how to create a simple animation][simple-anime]
@@ -44,7 +45,10 @@
 - [how to generate a component][gen-comp]
 - [how to generate a module][gen-mod]
 - [how to generate a service][gen-serv]
+- [how to generate a interface][gen-int]
 
+[gen-int]:#how-to-generate-a-interface
+[ang-prod]:#how-to-move-angular-into-production
 [title-meta]:#how-to-change-the-title-and-meta-tags
 [basic-service]:#how-to-set-up-a-typical-service
 [redirect-comp]:#how-to-redirect-in-a-component
@@ -73,6 +77,53 @@
 [install-app]:#how-to-install-angular-app
 
 ---
+
+### how to generate a interface
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- []()
+
+```
+ ng g interface insertName
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### how to move angular into production
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [angular](https://angular.io/guide/deployment)
+
+```
+ng build prod
+
+# will create a default folder called dist
+```
+
+```
+ng build prod --output-path docs
+
+# will now create folder called docs where the production build is located
+```
+
+</details>
+
+[go back :house:][home]
+
+
 
 ### how to change the title and meta tags
 
