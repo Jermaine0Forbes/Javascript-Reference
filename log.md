@@ -1,10 +1,22 @@
 # Logs
 
+## 7/1/19
+
+### What is React Redux
+
+I think it is a container that stores values/data that can easily be passed through
+any component or subcomponent no matter how many times they have been nested
+into another component 
+
+## 6/26/19
+- redux-logger
+- redux-thunk
+
 ## 6/4/19
 - Teach how to create an angular Component
 - teach how to create a component within another component
 - talk about the component decorator
-- talk about 
+- talk about
 
 
 ## 5/20/19
