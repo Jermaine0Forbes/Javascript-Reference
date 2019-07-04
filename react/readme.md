@@ -16,8 +16,17 @@
 - [how to use an effect hook][effect-hook]
 - [how to make the effect hook run only once][hook-once]
 
+## Redux
+- what is redux
+- how to use a reducer
+- how to use redux-thunk
+- basic react redux setup
+
+## Router
+
 ## Errors
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
+
 
 [hook-once]:how-to-make-the-effect-hook-run-once
 [effect-hook]:how-to-use-an-effect-hook
@@ -32,6 +41,25 @@
 [change-port]:#how-to-change-the-port-number
 
 ---
+
+
+### tit
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- []()
+
+```js
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ### how to make the effect hook run once
 
