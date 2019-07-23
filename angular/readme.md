@@ -24,6 +24,7 @@
 - [how to do two-way data binding][data-bind]
 - [how to create a template reference variable][temp-var]
 - [how to pass data into a subcomponent/child component][data-child]
+- [how to use ngSwitch][ng-switch]
 
 ## Routing
 - [how to do simple routing][ng-route]
@@ -84,9 +85,6 @@
 <summary>
 View Content
 </summary>
-
-**reference**
-- []()
 
 ```
  ng g interface insertName

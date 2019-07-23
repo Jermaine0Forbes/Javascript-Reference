@@ -1,12 +1,20 @@
 # Logs
 
+## 7/4/19
+
+### Angular Tutorial - Template Variable
+
+
+### Angular tutorial
+- talk about template variables and how to use them
+
 ## 7/1/19
 
 ### What is React Redux
 
 I think it is a container that stores values/data that can easily be passed through
 any component or subcomponent no matter how many times they have been nested
-into another component 
+into another component
 
 ## 6/26/19
 - redux-logger
