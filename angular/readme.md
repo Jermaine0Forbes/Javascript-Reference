@@ -48,6 +48,7 @@
 - [how to generate a service][gen-serv]
 - [how to generate a interface][gen-int]
 
+[ng-switch]:#how-to-use-ngswitch
 [gen-int]:#how-to-generate-a-interface
 [ang-prod]:#how-to-move-angular-into-production
 [title-meta]:#how-to-change-the-title-and-meta-tags
@@ -78,6 +79,50 @@
 [install-app]:#how-to-install-angular-app
 
 ---
+
+### how to use ngswitch
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [Angular 2 NgSwitch Example](https://www.concretepage.com/angular-2/angular-2-ngswitch-example)
+
+1. Create a property that holds a value in a component
+
+```js
+export class CategoriesComponent implements OnInit {
+  public category:string = "outdoor"//the value in category
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+
+2. In the html, this is how create the switch statement. Based on the value, the
+switch statement should output : `this is outdoors`
+
+```html
+<div [ngSwitch]="category">
+  <p *ngSwitchCase="'furniture'">
+    this is  furniture
+  </p>
+  <p *ngSwitchCase="'outdoor'">
+    this is outdoors
+  </p>
+  <p *ngSwitchDefault>
+    this is default
+  </p>
+</div>
+```
+
+</details>
+
+[go back :house:][home]
 
 ### how to generate a interface
 
@@ -657,6 +702,12 @@ View Content
 **My definition:** The template reference variable grabs the element from the view and
 allows you to add the variable into a method that you created into a component
 
+### :star: Getting the variable value with ngSubmit
+
+<details>
+<summary>
+View Content
+</summary>
 ```html
 <!-- once the submit button is clicked the onSubmit method will grab the input
     element value -->
@@ -685,6 +736,9 @@ export class PeopleComponent implements OnInit {
 
 }
 ```
+
+</details>
+
 
 </details>
 
@@ -851,6 +905,10 @@ View Content
  Using the Template Reference Variable
 </summary>
 
+
+
+
+
 **people.component.ts**
 
 ```js
@@ -865,9 +923,9 @@ export class PeopleComponent implements OnInit {
   }
 
   onSubmit(inpt){
-
+    // when the submission happens the amountInput =inpt  will be able to get the
+    // value and log it in the console
     console.log(inpt.value)
-
   }
 
 }
@@ -880,6 +938,7 @@ export class PeopleComponent implements OnInit {
 <h2>Form input</h2>
 <form  (ngSubmit)="onSubmit(amountInput)" >
   <div class="form-group">
+    <!-- amountInput is the variable for the input so its properties are inside it -->
     <input type="text" class="form-control col-3" name="amount" #amountInput>
   </div>
   <input type="submit" >
