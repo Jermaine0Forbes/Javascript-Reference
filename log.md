@@ -1,5 +1,9 @@
 # Logs
 
+## 10/12/19
+
+- Learn about IntersectionObserver API
+
 ## 7/4/19
 
 ### Angular Tutorial - Template Variable
