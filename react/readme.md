@@ -31,10 +31,10 @@
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
 
 
-[click-event]:how-to-use-the-click-event
-[hook-once]:how-to-make-the-effect-hook-run-once
-[effect-hook]:how-to-use-an-effect-hook
-[create-hook]:how-to-create-hook
+[click-event]:#how-to-use-the-click-event
+[hook-once]:#how-to-make-the-effect-hook-run-once
+[effect-hook]:#how-to-use-an-effect-hook
+[create-hook]:#how-to-create-hook
 [selected]:#how-to-use-selected-on-options
 [checked]:#how-to-use-checked-in-the-checkbox
 [class-dom]:#how-to-add-class-names-to-elements
