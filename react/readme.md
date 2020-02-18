@@ -6,6 +6,9 @@
 - [how to create a component][c-comp]
 - [how to render react][react-render]
 
+## Events
+- [how to use the click event][click-event]
+
 ## Attributes
 - [how to add class names to elements][class-dom]
 - [how to use checked in the checkbox][checked]
@@ -28,6 +31,7 @@
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
 
 
+[click-event]:how-to-use-the-click-event
 [hook-once]:how-to-make-the-effect-hook-run-once
 [effect-hook]:how-to-use-an-effect-hook
 [create-hook]:how-to-create-hook
@@ -43,7 +47,7 @@
 ---
 
 
-### tit
+### how to use the click event
 
 <details>
 <summary>
@@ -51,11 +55,67 @@ View Content
 </summary>
 
 **reference**
-- []()
+- [reactjs](https://reactjs.org/docs/handling-events.html)
+
+:blue_book: **Summary:** We are just creating a basic component that allows you
+to click on a button and the value of count will go up by an increment of one.
+There are several ways to do this
+
+
+### 1st method
+
+<details>
+<summary>
+View Content
+</summary>
 
 ```js
+import React, { Component } from 'react';
+import './App.css';
+import Button from 'react-bootstrap/Button';
+
+class App extends Component {
+
+  constructor(){
+    super()
+
+    this.state = {count:0} // creating the count property
+  }
+
+  countIt = () => { // method that increases the counter
+
+    this.setState({
+      count:++this.count
+    })
+
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h2>Basic Event Tutorial</h2>
+        </div>
+        <div className="App-event">
+          <p>  Click here to see something cool</p>
+          // this is the button that will trigger the countIt method
+          <Button variant="primary" onClick={this.countIt}>Click on this</Button>
+        </div>
+        <div className="result">
+        {this.state.count}// this will show the changes of the number when clicking
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
 
 ```
+
+</details>
+
+
 
 </details>
 
