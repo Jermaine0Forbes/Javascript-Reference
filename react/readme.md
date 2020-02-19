@@ -8,6 +8,7 @@
 
 ## Events
 - [how to use the click event][click-event]
+- [how to use the hover event][]
 
 ## Attributes
 - [how to add class names to elements][class-dom]
@@ -66,7 +67,7 @@ There are several ways to do this
 
 <details>
 <summary>
-View Content
+Class based component
 </summary>
 
 ```js
@@ -103,6 +104,68 @@ class App extends Component {
         </div>
         <div className="result">
         {this.state.count}// this will show the changes of the number when clicking
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
+
+</details>
+
+#### 2nd method
+
+<details>
+<summary>
+Hook based component
+</summary>
+
+
+```js
+import React, { Component, useState, useEffect } from 'react';
+// import logo from './logo.svg';
+import './App.css';
+import Button from 'react-bootstrap/Button';
+
+
+// this is a hooks based component
+const ButtonEvent = () =>{
+
+  const [counter,setCounter] = useState(0);
+
+  useEffect(() => {
+    //if the counter is only at 0 then dont run
+    // the code below
+    if(counter === 0)
+    return;
+
+    document.querySelector("div.result").innerHTML = `you clicked ${counter} times!`;
+  },[counter])//useEffect checks to see if there were any changes made to counter
+    // if there weren't then it doesn't run
+
+  return (
+    <div className="App-event">
+      <p>  Click here to see something cool</p>
+      // after every click the setCounter increases the amount to counter
+      <Button variant="primary" onClick={() => setCounter(counter+1)}>Click on this</Button>
+    </div>
+  )
+}
+
+class App extends Component {
+
+
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h2>Basic Event Tutorial</h2>
+        </div>
+        <ButtonEvent/>// this is where I put the hook component
+        <div className="result">
         </div>
       </div>
     );
