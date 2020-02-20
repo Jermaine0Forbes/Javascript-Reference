@@ -8,7 +8,7 @@
 
 ## Events
 - [how to use the click event][click-event]
-- [how to use the hover event][]
+- [how to use the hover event][hover-event]
 
 ## Attributes
 - [how to add class names to elements][class-dom]
@@ -31,7 +31,7 @@
 ## Errors
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
 
-
+[hover-event]:#how-to-use-the-hover-event
 [click-event]:#how-to-use-the-click-event
 [hook-once]:#how-to-make-the-effect-hook-run-once
 [effect-hook]:#how-to-use-an-effect-hook
@@ -48,6 +48,90 @@
 ---
 
 
+### title
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [reactjs - synthetic events](https://reactjs.org/docs/events.html)
+---
+:question: **Syntax**
+
+``
+
+---
+:blue_book: **Summary:**
+
+```js
+import React, { Component, useState, useEffect } from 'react';
+import './App.css';
+import {Button,Card} from 'react-bootstrap';
+
+
+const HoverSection = () => {
+
+  const [hoverOn, setHoverOn] = useState(false),
+        boxStyle ={ // this will be the inline style to the element #box-hover
+           transition:"all 0.3s",
+           height:"200px",
+           width:"200px"
+        };
+
+  useEffect(() =>{
+    let box = document.querySelector("#box-hover"); // grabs the element
+    if(hoverOn){//checks if hoverOn is true
+
+      // changes the class names that change background color of #box-hover when
+      // it is being hovered over
+      box.classList.replace("bg-danger", "bg-success");
+    }else{//if hoverOn is false
+
+      // this will check to see if #box-hover has the class bg-success, and if so
+      // it will change it back to bg-danger
+      if (box.classList.contains("bg-success")) box.classList.replace("bg-success","bg-danger")
+    }
+  },[hoverOn])
+
+  return (
+    <Card className="hover-section">
+        <h2> Here is an example of hover </h2>
+        // onMouseOver & onMouseOut changes the hoverOn value to true or false
+        <div id="box-hover" onMouseOver={() => setHoverOn(true)}  onMouseOut={() => setHoverOn(false)} style={boxStyle} className="box bg-danger mx-auto my-4">
+        </div>
+    </Card>
+  )
+}
+
+
+class App extends Component {
+
+
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h2>Basic Event Tutorial</h2>
+        </div>
+        <div className="container">
+          <HoverSection/> // the hook component inside the container
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+</details>
+
+[go back :house:][home]
+
+
+
 ### how to use the click event
 
 <details>
@@ -55,8 +139,10 @@
 View Content
 </summary>
 
-**reference**
+:link: **Reference**
 - [reactjs](https://reactjs.org/docs/handling-events.html)
+- [reactjs - synthetic events](https://reactjs.org/docs/events.html)
+---
 
 :blue_book: **Summary:** We are just creating a basic component that allows you
 to click on a button and the value of count will go up by an increment of one.
