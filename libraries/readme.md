@@ -2,10 +2,15 @@
 
 - [highlight][highlight]
 - [ace][ace]
+- [axios][]
 
 [ace]:#ace
 [highlight]:#highlight
 [home]:#javascript-libraries
+
+## axios
+
+to be continued ...
 
 ## highlight
 
