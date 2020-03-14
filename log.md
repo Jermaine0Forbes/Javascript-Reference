@@ -1,5 +1,9 @@
 # Logs
 
+## 2/20/20
+
+- learning & logging react events, more specifically hover
+
 ## 10/12/19
 
 - Learn about IntersectionObserver API
