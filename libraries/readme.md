@@ -14,11 +14,125 @@ to be continued ...
 
 ## highlight
 
-**reference**
--[github](https://github.com/highlightjs/highlight.js)
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [github](https://github.com/highlightjs/highlight.js)
+- [homepage](https://highlightjs.org/)
+- [cdnjs](https://cdnjs.com/libraries/highlight.js)
+---
+
+:star: Example 1
+- [highlight.js - codepen](https://codepen.io/blackyurizan/pen/jOPzRdj)
+
+---
+:blue_book: **Summary:** adds code highlighting syntax for language text
 
 
-adds code highlighting syntax for language text
+1. Add links to stylesheet and scripts
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/agate.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+```
+
+2. Add the `pre code` blocks and add a class name of the language you want highlighted
+
+```html
+<pre>
+  <code class="css">
+    @font-face {
+      font-family: Chunkfive; src: url('Chunkfive.otf');
+    }
+
+    body, .usertext {
+      color: #F0F0F0; background: #600;
+      font-family: Chunkfive, sans;
+      --heading-1: 30px/32px Helvetica, sans-serif;
+    }
+
+    @import url(print.css);
+    @media print {
+      a[href^=http]::after {
+        content: attr(href)
+      }
+    }
+  </code>
+</pre>
+```
+
+3. In the bottom of the code block activate the *highlight*
+
+```html
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+</script>
+```
+
+4. Everything should work, here were some functions I was creating to make it
+easier to change color themes.
+
+```js
+function initLink(hrefVal){
+    const link = document.createElement("link");
+    link.setAttribute("rel","stylesheet");
+    link.setAttribute("href",hrefVal);
+    link.setAttribute("id","hljs-theme");
+    document.head.appendChild(link);
+  }
+  function setTheme(theme="default", version="9.18.1", link="link#hljs-theme"){
+            const  v = version,
+                   th = theme,
+                   style = document.querySelector(link),
+                   cdn = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${v}/styles/${th}.min.css`;
+             if(!style){initLink(cdn)}
+              style.href = cdn;
+
+   }
+
+ function getThemes(){
+   return [
+     "a11y-dark",
+     "a11y-light",
+     "agate",
+     "an-old-hope",
+     "androidstudio",
+     "arduino-light",
+     "arta",
+     "ascetic",
+     "atelier-cave-dark",
+     "atelier-cave-light",
+   ];
+ }
+
+//setTheme("gml");
+
+ //setTheme("googlecode");
+
+
+ document.querySelectorAll("pre code").forEach(block =>{
+
+           let values = Array.from(block.classList.values()),
+           themes = getThemes(),
+           filtered = themes.filter(theme => {
+               let  val = values.find(val => val == theme)
+               return val;
+           }) ,
+           theme = filtered[0];
+
+
+           setTheme(theme)
+});
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
 
 ## ace
 

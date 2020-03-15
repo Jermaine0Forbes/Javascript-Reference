@@ -30,6 +30,7 @@
 
 ## Errors
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
+- TypeError: Cannot read property 'map' of undefined
 
 [hover-event]:#how-to-use-the-hover-event
 [click-event]:#how-to-use-the-click-event
@@ -48,7 +49,7 @@
 ---
 
 
-### title
+### how to use the hover event
 
 <details>
 <summary>
@@ -58,12 +59,10 @@ View Content
 :link: **Reference**
 - [reactjs - synthetic events](https://reactjs.org/docs/events.html)
 ---
-:question: **Syntax**
 
-``
-
----
-:blue_book: **Summary:**
+:blue_book: **Summary:** In this example we are using  **react hooks** to create
+a component( `HoverSection`) that will show how to use **onMouserOver** & **onMouseOut**
+events. 
 
 ```js
 import React, { Component, useState, useEffect } from 'react';
