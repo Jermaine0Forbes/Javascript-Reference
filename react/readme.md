@@ -21,7 +21,7 @@
 - [how to make the effect hook run only once][hook-once]
 
 ## Redux
-- what is redux
+- [what is redux][redux]
 - how to use a reducer
 - how to use redux-thunk
 - basic react redux setup
@@ -32,6 +32,7 @@
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
 - TypeError: Cannot read property 'map' of undefined
 
+[redux]:#what-is-redux
 [hover-event]:#how-to-use-the-hover-event
 [click-event]:#how-to-use-the-click-event
 [hook-once]:#how-to-make-the-effect-hook-run-once
@@ -48,6 +49,30 @@
 
 ---
 
+### what is redux
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- []()
+---
+:question: **Syntax**
+
+``
+
+---
+:blue_book: **Summary:**
+
+```js
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ### how to use the hover event
 
@@ -62,7 +87,7 @@ View Content
 
 :blue_book: **Summary:** In this example we are using  **react hooks** to create
 a component( `HoverSection`) that will show how to use **onMouserOver** & **onMouseOut**
-events. 
+events.
 
 ```js
 import React, { Component, useState, useEffect } from 'react';

@@ -1,16 +1,116 @@
 # Javascript Libraries
 
-- [highlight][highlight]
 - [ace][ace]
-- [axios][]
+- [axios][axios]
+- [highlight][highlight]
 
+[axios]:#axios
 [ace]:#ace
 [highlight]:#highlight
 [home]:#javascript-libraries
 
 ## axios
 
-to be continued ...
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [github](https://github.com/axios/axios)
+---
+
+---
+:blue_book: **Summary:** its pretty much an ajax library
+
+### to do a get request
+```js
+import axios from "axios";
+
+axios.get('/user', {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });  
+```
+
+### to do a post request
+
+```js
+import axios from "axios";
+const url = "http://www.example.com/api/data";
+const data = {name:"jermaine forbes"};
+
+axios({
+    method:"post",
+    url: url,
+    data: data
+    headers:{"Content-Type" : "application/json"}
+  })
+  .then(res => {
+    let data = res.data;
+    console.log(data)
+  })
+  .catch(err => console.log(err))
+
+```
+### to do a post request with formdata
+
+```js
+import axios from "axios";
+const url = "http://www.example.com/api/data";
+const form = document.querySelector("form");
+const data = new FormData(form);
+
+axios({
+    method:"post",
+    url: url,
+    data: data
+    headers:{'Content-Type': 'multipart/form-data' }
+  })
+  .then(res => {
+    let data = res.data;
+    console.log(data)
+  })
+  .catch(err => console.log(err))
+
+```
+### to do a post request and send JWT token
+
+```js
+import axios from "axios";
+const url = "http://www.example.com/api/data";
+const form = document.querySelector("form");
+const data = new FormData(form);
+const acces_token = "alij23490j...";
+const token = "Bearer "+access_token;
+
+axios({
+    method:"post",
+    url: url,
+    data: data
+    headers:{'Authorization': token }
+  })
+  .then(res => {
+    let data = res.data;
+    console.log(data)
+  })
+  .catch(err => console.log(err))
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ## highlight
 
