@@ -24,7 +24,7 @@
 - [what is redux][redux]
 - how to use a reducer
 - how to use redux-thunk
-- basic react redux setup
+- [basic react redux setup][basic-redux]
 
 ## Router
 
@@ -32,6 +32,7 @@
 - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components)
 - TypeError: Cannot read property 'map' of undefined
 
+[basic-redux]:#basic-react-redux-setup
 [redux]:#what-is-redux
 [hover-event]:#how-to-use-the-hover-event
 [click-event]:#how-to-use-the-click-event
@@ -49,6 +50,195 @@
 
 ---
 
+### basic react redux setup
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- []()
+---
+
+1. Install redux packages, obviously you should install react before this
+
+```
+npm i redux redux-thunk redux-logger react-redux -D
+```
+
+2. import packages in App.js
+
+```js
+import React, { Component } from 'react';
+import './App.css';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import {Provider} from "react-redux";
+
+...
+
+```
+
+3. create an initial state, reducer, and the store
+
+```js
+import React, { Component } from 'react';
+import './App.css';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import {Provider} from "react-redux";
+
+
+const initState = {
+  counter: 0
+}
+
+const reducer = ( state = initState, action) =>{
+  switch (action.type) {
+    case "increment":
+      return {
+        counter: state.counter + 1
+      }
+    case "decrement":
+    return{
+      counter: state.counter - 1
+    }
+
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunk,logger));
+
+function App() {
+
+  return (
+    <div className="App">
+      React App
+    </div>
+  );
+}
+
+```
+
+
+4. wrap the Provider component over all other components
+
+```js
+import React, { Component } from 'react';
+import './App.css';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import {Provider} from "react-redux";
+
+
+const initState = {
+  counter: 0
+}
+
+const reducer = ( state = initState, action) =>{
+  switch (action.type) {
+    case "increment":
+      return {
+        counter: state.counter + 1
+      }
+    case "decrement":
+    return{
+      counter: state.counter - 1
+    }
+
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunk,logger));
+
+function App() {
+
+  return (
+    <Provider store={store}>
+      <div className="App">
+        React App
+      </div>
+    </Provider>
+  );
+}
+
+
+```
+
+5. Now add the content within the app that will change the state, and use the
+**useDispatch** method to dispatch the types. And the **useSelector** to retrieve the state.
+
+```js
+import React, { Component } from 'react';
+import './App.css';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import {Provider,useDispatch, useSelector} from "react-redux";
+
+
+const initState = {
+  counter: 0
+}
+
+const reducer = ( state = initState, action) =>{
+  switch (action.type) {
+    case "increment":
+      return {
+        counter: state.counter + 1
+      }
+    case "decrement":
+    return{
+      counter: state.counter - 1
+    }
+
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunk,logger));
+
+function App() {
+
+  const dispatch = useDispatch();
+  const counter = useSelector(state => state.counter);
+
+  const handleClick = (action) => {
+    dispatch({type:action});
+  }
+
+  return (
+    <Provider store={store}>
+      <div className="App">
+      <div className="counter">
+        <h1 id="counter-header">counter</h1>
+        <div className="counter-container">
+          <button className="btn"><span className="" onClick={() => handleClick("increment")}>+</span></button>
+          <input type="text" readOnly value={counter} />
+          <button className="btn"><span className=""  onClick={() => handleClick("decrement")}>-</span></button>
+        </div>
+      </div>
+      </div>
+    </Provider>
+  );
+}
+
+```
+
+
+</details>
+
+[go back :house:][home]
+
 ### what is redux
 
 <details>
@@ -59,12 +249,9 @@ View Content
 :link: **Reference**
 - []()
 ---
-:question: **Syntax**
-
-``
 
 ---
-:blue_book: **Summary:**
+:blue_book: **Summary:** Shit I don't know
 
 ```js
 
