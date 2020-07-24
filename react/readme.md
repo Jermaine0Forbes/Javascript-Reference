@@ -173,8 +173,42 @@ function App() {
 
 ```
 
-5. Now add the content within the app that will change the state, and use the
-**useDispatch** method to dispatch the types. And the **useSelector** to retrieve the state.
+5. Now create a separate file and name it **Counter**. Create the Counter hook add the content from below, while importing methods from `react-redux`  that will change the state. These methods are
+**useDispatch**  to dispatch the types, and the **useSelector** to retrieve the state.
+
+```js
+import React from 'react';
+// import these methods if you are using hooks
+import {useDispatch, useSelector} from "react-redux";
+
+
+export default function Counter(){
+  // this will get the current counter value
+  const counter = useSelector(state => state.counter);
+  // this will allow you to dispatch the type and the new value
+  const dispatch = useDispatch();
+
+  const handleClick = (action) => {
+    dispatch({type:action}); // this will dispatch the type of action based on which button you click
+  }
+
+  return (
+    <div className="counter">
+      <h1 id="counter-header">counter</h1>
+      <div className="counter-container">
+        <button className="btn" onClick={() => handleClick("increment")}><span className="">+</span></button>
+        <input type="text" readOnly value={counter} />
+        <button className="btn" onClick={() => handleClick("decrement")}><span className="">-</span></button>
+      </div>
+    </div>
+  )
+}
+
+
+```
+
+6. Now import the Counter hook into the main App component . And everything else
+should be working now.
 
 ```js
 import React, { Component } from 'react';
@@ -182,8 +216,8 @@ import './App.css';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import {Provider,useDispatch, useSelector} from "react-redux";
-
+import {Provider} from "react-redux";
+import Counter from "./Counter";
 
 const initState = {
   counter: 0
@@ -209,24 +243,10 @@ const store = createStore(reducer, applyMiddleware(thunk,logger));
 
 function App() {
 
-  const dispatch = useDispatch();
-  const counter = useSelector(state => state.counter);
-
-  const handleClick = (action) => {
-    dispatch({type:action});
-  }
-
   return (
     <Provider store={store}>
       <div className="App">
-      <div className="counter">
-        <h1 id="counter-header">counter</h1>
-        <div className="counter-container">
-          <button className="btn"><span className="" onClick={() => handleClick("increment")}>+</span></button>
-          <input type="text" readOnly value={counter} />
-          <button className="btn"><span className=""  onClick={() => handleClick("decrement")}>-</span></button>
-        </div>
-      </div>
+         <Counter />
       </div>
     </Provider>
   );
