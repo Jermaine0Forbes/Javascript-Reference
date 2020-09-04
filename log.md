@@ -1,5 +1,31 @@
 # Logs
 
+
+## 9/3/20
+
+### Express.js: TypeError: res.status is not a function
+
+I received this error within my server.js file. Basically the reason why I got this error was because I 
+did not have the next parameter in the `app.use()`. I'll just post this code to let you know
+
+[expressjs - res.status is not a function TypeError](https://github.com/visionmedia/supertest/issues/416)
+
+```js
+app.use(function(err,req,res,next){
+      if(res.status(500)){
+    	  var title = err;
+        res.render('error/500',{errTitle:title});
+    }else if(res.status(502)){
+        res.render('error/500',{errTitle:502});
+    }else if(res.status(503)){
+        res.render('error/500',{errTitle:503});
+    }
+})
+
+```
+
+
+
 ## 2/20/20
 
 - learning & logging react events, more specifically hover
