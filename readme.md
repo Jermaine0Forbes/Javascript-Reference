@@ -4,6 +4,7 @@
 - [how to create an element][createElement]
 - [convert DOM elements to array elements][dom-array]
 - [how to create a DOM element from a string][dom-string]
+- how to invoke an anonymous function
 
 
 ## Classes
@@ -34,6 +35,7 @@
 - [how to use FormData][form-data]
 - [using the request object for fetch][req-fetch]
 - [how to create a simple fetch request][fetch-get]
+- how to turn FormData in JSON
 
 
 ## Things I need to learn
@@ -58,6 +60,27 @@
 [home]:#javascript-reference
 
 ___
+
+
+### how to invoke an anonymous function
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- []()
+
+```js
+(() =>{
+ // insert code here
+})()
+```
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to turn FormData in JSON
