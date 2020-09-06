@@ -48,6 +48,9 @@
 - [how to generate a service][gen-serv]
 - [how to generate a interface][gen-int]
 
+## Error
+- if you open up an emacs editor when you want to create an app
+
 [ng-switch]:#how-to-use-ngswitch
 [gen-int]:#how-to-generate-a-interface
 [ang-prod]:#how-to-move-angular-into-production
@@ -79,6 +82,35 @@
 [install-app]:#how-to-install-angular-app
 
 ---
+
+### if you open up an emacs editor when you want to create an app
+
+<details>
+<summary>
+View Content
+</summary>
+  
+  **reference**
+- [ng serve opens editor instead of loading local URL](https://askubuntu.com/questions/980708/ng-serve-opens-editor-instead-of-loading-local-url)
+- [Using the Text Editors](https://www.informit.com/articles/article.aspx?p=1670957&seqNum=3)
+
+
+#### If the terminal window is still open make sure type this while in the window
+```
+Ctrl+X, Ctrl+C
+```
+
+### now remove the ng's and add the angular ng
+
+ ```
+ sudo apt purge ng-common ng-latin; npm install -g @angular/cli
+ 
+ ```
+
+</details>
+
+[go back :house:][home]
+
 
 ### how to use ngswitch
 
