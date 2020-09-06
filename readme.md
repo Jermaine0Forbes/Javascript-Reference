@@ -59,6 +59,25 @@
 
 ___
 
+
+### how to turn FormData in JSON
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [How to convert FormData(HTML5 Object) to JSON](https://stackoverflow.com/questions/41431322/how-to-convert-formdatahtml5-object-to-json)
+
+```js
+const data = JSON.stringify(Object.fromEntries(formData.entries())); // you add this data into the fetch api or axios
+```
+
+</details>
+
+[go back :house:][home]
+
 ### using the request object for fetch
 
 <details>
@@ -103,6 +122,13 @@ View Content
 let data = new FormData();//creates the object
 
 data.append("file", input.["files"][0])//create the key-value pair
+```
+
+```js
+const form = document.getElementById("form"); //grabs the form by the id
+const data = new FormData(form) // grabs all the values from the input/select/textarea etc
+
+
 ```
 
 </details>
