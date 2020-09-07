@@ -1,6 +1,16 @@
 # Logs
 
 
+## 9/6/20
+
+### Document 
+
+- [ng - No such file or directory ](https://github.com/angular/angular-cli/issues/6265)
+
+```
+alias ng="/home/{username}/.nvm/versions/node/{version number}/lib/node_modules//@angular/cli/bin/ng
+```
+
 ## 9/3/20
 
 ### Express.js: TypeError: res.status is not a function
