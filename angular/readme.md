@@ -2190,21 +2190,19 @@ View Content
 1. In the **angular.json** file, try to find the `"serve"` property and type in port like this
 
 ```
-{
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "projects": {
-        "my-project": {
-            "architect": {
-                "serve": {
-                    "options": {
-                        "port": 4444,
-                        "host":"0.0.0.0"
-                    }
-                }
+ "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ang-app:build", //put it below this property
+            "port": 4000,
+            "host": "0.0.0.0"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ang-app:build:production"
             }
-        }
-    }
-}
+          }
+        },
 ```
 
 </details>
@@ -2226,20 +2224,19 @@ View Content
 1. In the **angular.json** file, try to find the `"serve"` property and type in port like this
 
 ```
-{
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "projects": {
-        "my-project": {
-            "architect": {
-                "serve": {
-                    "options": {
-                        "port": 4444
-                    }
-                }
+ "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ang-app:build", //put it below this property
+            "port": 4000,
+            "host": "0.0.0.0"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ang-app:build:production"
             }
-        }
-    }
-}
+          }
+        },
 ```
 
 </details>
@@ -2386,13 +2383,20 @@ ng new insert-name-for-app
 search for options. When you find it add the host property and the port property
 
 ```
-"serve": {
-  "builder": "@angular-devkit/build-angular:dev-server",
-  "options": {
-    "browserTarget": "my-app:build",
-    "port": 1337,
-    "host":"0.0.0.0"
-  },
+ "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ang-app:build", //put it below this property
+            "port": 4000,
+            "host": "0.0.0.0"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ang-app:build:production"
+            }
+          }
+        },
+
 
 ```
 
