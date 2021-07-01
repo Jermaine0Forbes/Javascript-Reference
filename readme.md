@@ -4,8 +4,8 @@
 - [how to create an element][createElement]
 - [convert DOM elements to array elements][dom-array]
 - [how to create a DOM element from a string][dom-string]
-- how to invoke an anonymous function
-
+- [how to invoke an anonymous function][anon-fun]
+- [how to get the height and width of an element][get-dimension]
 
 ## Classes
 - [how to fix the "this" keyword in methods][this-key]
@@ -19,11 +19,9 @@
 - [document.getElementsByTagName][by-tag]
 
 ## String
-
 - [how to search through a string][string-search]
 
 ## Window
-
 - [How to get the current url][window-location]
 
 
@@ -35,12 +33,15 @@
 - [how to use FormData][form-data]
 - [using the request object for fetch][req-fetch]
 - [how to create a simple fetch request][fetch-get]
-- how to turn FormData in JSON
+- [how to turn FormData in JSON][formdata-json]
 
 
 ## Things I need to learn
 - [async functions]
 
+[get-dimension]:#how-to-get-the-height-and-width-of-an-element
+[anon-fun]:#how-to-invoke-an-anonymous-function
+[formdata-json]:#how-to-turn-formdata-in-json
 [req-fetch]:#using-the-request-object-for-fetch
 [form-data]:#how-to-use-formdata
 [dom-string]:#how-to-create-a-dom-element-from-a-string
@@ -60,6 +61,41 @@
 [home]:#javascript-reference
 
 ___
+
+
+### how to get the height and width of an element
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [Getting the Width and Height of an Element](https://www.javascripttutorial.net/javascript-dom/javascript-width-height/)
+---
+
+The offset dimensions will get height and width with the border dimensions of an element included
+
+```js
+let box = document.querySelector('.box');
+let width = box.offsetWidth;
+let height = box.offsetHeight;
+```
+
+
+The client dimension will get the height and width before the border of an element
+
+```js
+let box = document.querySelector('.box');
+let width = box.clientWidth;
+let height = box.clientHeight;
+```
+
+</details>
+
+[go back :house:][home]
+
 
 
 ### how to invoke an anonymous function
