@@ -34,11 +34,13 @@
 - [using the request object for fetch][req-fetch]
 - [how to create a simple fetch request][fetch-get]
 - [how to turn FormData in JSON][formdata-json]
+- [how to send FormData object in JQuery][fd-jq]
 
 
 ## Things I need to learn
 - [async functions]
 
+[fd-jq]:#how-to-send-formdata-object-in-jquery
 [get-dimension]:#how-to-get-the-height-and-width-of-an-element
 [anon-fun]:#how-to-invoke-an-anonymous-function
 [formdata-json]:#how-to-turn-formdata-in-json
@@ -61,6 +63,42 @@
 [home]:#javascript-reference
 
 ___
+
+
+### how to send FormData object in JQuery
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [stackoverflow](https://stackoverflow.com/questions/6974684/how-to-send-formdata-objects-with-ajax-requests-in-jquery)
+---
+
+If you are using the ajax method in query make sure you set the processData to **false**
+
+```js
+var fd = new FormData();    
+fd.append( 'file', input.files[0] );
+
+$.ajax({
+  url: 'http://example.com/script.php',
+  data: fd,
+  processData: false, // Setting processData to false lets you prevent jQuery from automatically transforming the data into a query string
+  contentType: false,
+  type: 'POST',
+  success: function(data){
+    alert(data);
+  }
+});
+```
+
+Explanation: 
+
+</details>
+
+[go back to table of contents][home]
 
 
 ### how to get the height and width of an element
