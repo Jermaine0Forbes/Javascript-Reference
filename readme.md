@@ -6,6 +6,7 @@
 - [how to create a DOM element from a string][dom-string]
 - [how to invoke an anonymous function][anon-fun]
 - [how to get the height and width of an element][get-dimension]
+- [how to compare two objects][compare-obj]
 
 ## Classes
 - [how to fix the "this" keyword in methods][this-key]
@@ -40,6 +41,7 @@
 ## Things I need to learn
 - [async functions]
 
+[compare-obj]:#how-to-compare-two-objects
 [fd-jq]:#how-to-send-formdata-object-in-jquery
 [get-dimension]:#how-to-get-the-height-and-width-of-an-element
 [anon-fun]:#how-to-invoke-an-anonymous-function
@@ -64,6 +66,35 @@
 
 ___
 
+
+### how to compare two objects
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [How to Compare 2 Objects in JavaScript](https://www.samanthaming.com/tidbits/33-how-to-compare-2-objects/)
+---
+
+
+```js
+const k1 = { fruit: '🥝' };
+const k2 = { fruit: '🥝' };
+
+// Using JavaScript
+JSON.stringify(k1) === JSON.stringify(k2); // true
+
+// Using Lodash
+_.isEqual(k1, k2); // true
+```
+
+Explanation: 
+
+</details>
+
+[go back to table of contents][home]
 
 ### how to send FormData object in JQuery
 
